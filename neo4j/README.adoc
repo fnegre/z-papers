@@ -1,0 +1,63 @@
+# Zenika Papers
+
+.Supprimer le contenu de la base
+[source,cypher]
+----
+MATCH (n)
+DETACH DELETE n
+----
+
+.Renvoyer tout le contenu de la base
+[source,cypher]
+----
+MATCH (n)
+RETURN n
+----
+
+[source,cypher]
+----
+// Creation des entites
+MERGE (entite1:Entite {nom: 'Florian Negre', date_naissance: '19/05/1986'})
+MERGE (entite2:Entite {nom: 'Vickrame'})
+MERGE (contact1:Contact {date: '09/03/2018', type: 'Hangout', contenu: 'technozaures'})
+MERGE (position1:Position {libelle: 'CBP', latitude: 47.22195, longitude: -1.6265260000000126})
+MERGE (position2:Position {libelle: 'Quick', latitude: 47.22228089999999, longitude: -1.62676799999997})
+MERGE (position3:Position {libelle: 'Société Générale de Banque aux Antilles Agence de Jarry', latitude: 16.2425049, longitude: -61.56335150000001})
+MERGE (compte1:Compte {name:'Compte Florian', date:'01-01-2018 14h35'})
+MERGE (transaction1:Transaction {credit: 10, date:'01-01-2018 14h35'})
+
+// Creation des relations
+MERGE (entite1) -[:POSSEDE]->(compte1)
+MERGE (transaction1)-[:VERS]->(compte1)
+MERGE (contact1)-[:PARTICIPANT]->(entite1)
+MERGE (contact1)-[:PARTICIPANT]->(entite2)
+MERGE (contact1)-[:LIEU]->(position1)
+
+RETURN *
+----
+
+.Distances entre deux points
+[source,cypher]
+----
+Match(pos1:Position {libelle: 'Quick'})
+Match (pos2:Position {libelle: 'CBP'})
+//return pos1, pos2
+
+WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2
+RETURN distance(p1,p2) AS dist
+----
+.Créer une relation entre chaque lieu contenant leur distance
+[source,cypher]
+----
+Match(pos1:Position), (pos2:Position)
+WHERE pos1.libelle <> pos2.libelle
+WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2, pos1, pos2
+MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
+----
+
+.Tout renvoyer
+[source,cypher]
+----
+MATCH (n)
+RETURN n;
+----
