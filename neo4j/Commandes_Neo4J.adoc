@@ -1,5 +1,7 @@
 # Commandes Neo4J
 
+Petit memo
+
 .Supprimer le contenu de la base
 [source,cypher]
 ----
@@ -24,6 +26,8 @@ Match (pos2:Position {libelle: 'CBP'})
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2
 RETURN distance(p1,p2) AS dist
 ----
+
+
 .Créer une relation entre chaque lieu contenant leur distance
 [source,cypher]
 ----
@@ -33,12 +37,6 @@ WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point(
 MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
 ----
 
-.Tout renvoyer
-[source,cypher]
-----
-MATCH (n)
-RETURN n;
-----
 
 You can run this query to get an overview of entities and how they are related:
 MATCH (a)-[r]->(b) WHERE labels(a) <> [] AND labels(b) <> []
