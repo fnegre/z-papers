@@ -1,5 +1,4 @@
 .Creation de l'entite *black/white list*
-----
 MERGE(whiteList:WhiteList{libelle:'WhiteList'})
 MERGE(blackList:BlackList{libelle:'BlackList'})
 ----
@@ -51,7 +50,7 @@ MERGE(compteFNE:Compte{libelle:'Compte de Florian',dateOuverture:'1998-01-01'})
 MERGE(compteVUJ:Compte{libelle:'Compte de Vickrame',dateOuverture:'1996-01-01'})
 MERGE(compteABO:Compte{libelle:'Compte Antoine',dateOuverture:'1996-11-01'})
 MERGE(compteACE:Compte{libelle:'Compte Antoine Celier',dateOuverture:'1999-11-01'})
-MERGE(compteAOR:Compte{libelle:'Compte d'Amelin',dateOuverture:'2003-05-"1'})
+MERGE(compteAOR:Compte{libelle:'Compte d Amelin',dateOuverture:'2003-05-1'})
 ----
 
 .Creation des *agences*

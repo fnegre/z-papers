@@ -1,73 +1,3 @@
-.Creation de la relation *pays et white/blakList*
-----
-MERGE(paysFR)-[:APPARTIENT]->(whiteList)
-MERGE(paysUS)-[:APPARTIENT]->(whiteList)
-MERGE(paysMU)-[:APPARTIENT]->(blackList)
-MERGE(paysGB)-[:APPARTIENT]->(whiteList)
-MERGE(paysTU)-[:APPARTIENT]->(blackList)
-MERGE(paysCA)-[:APPARTIENT]->(whiteList)
-----
-
-.Creation de la relation *banque/pays*
-----
-MERGE (banqueSG)-[:EST LOCALISE]->(paysFR)
-MERGE(banqueBNP)-[:EST LOCALISE]->(paysFR)
-MERGE(banqueUTB)-[:EST LOCALISE]->(paysTU)
-MERGE(banqueCA)-[:EST LOCALISE]->(paysCA)
-MERGE(banqueMU)-[:EST LOCALISE]->(paysMU)
-----
-
-
-.Creation de la relation *Personne/type de personne*
-----
-MERGE (personneVUJ)-[:EST]->(typePersonneP)
-MERGE (personneFNE)-[:EST]->(typePersonneP)
-MERGE (personneABO)-[:EST]->(typePersonneP)
-MERGE (personneAOR)-[:EST]->(typePersonneP)
-MERGE (personneRestaurateur)-[:EST]->(typePersonneM)
-MERGE (personneImprimeur)-[:EST]->(typePersonneM)
-MERGE (personneACE)-[:EST]->(typePersonneP)
-MERGE (personneBPI)-[:EST]->(typePersonneM)
-MERGE (personneFisc)-[:EST]->(typePersonneM)
-MERGE (personneAUJ)-[:EST]->(typePersonneP)
-----
-
-.Creation de la relation *Personne/Compte*
-----
-MERGE (personneVUJ)-[:DISPOSE]->(compteVUJ)
-MERGE (personneAUJ)-[:DISPOSE]->(compteVUJ)
-MERGE (personneFNE)-[:DISPOSE]->(compteFNE)
-MERGE (personneABO)-[:DISPOSE]->(compteABO)
-MERGE (personneAOR)-[:DISPOSE]->(compteAOR)
-MERGE (personneACE)-[:DISPOSE]->(compteACE)
-MERGE (personneRestaurateur)-[:DISPOSE]->(compteRestaurateur)
-MERGE (personneImprimeur)-[:DISPOSE]->(compteImprimeur)
-----
-
-.Creation relation *Compte/All*
-----
-MERGE (agenceNantes)-[:DISPOSE]->(compteAgence)
-MERGE (personneFisc)-[:CONSULTE]->(compteAgence)
-----
-
-.Creation de la relation *Consultant/Personne*
-----
-MERGE (consultantVUJ)-[:EST]->(personneVUJ)
-MERGE (consultantFNE)-[:EST]->(personneFNE)
-MERGE (consultantAOR)-[:EST]->(personneAOR)
-MERGE (consultantACE)-[:EST]->(personneACE)
-----
-
-.Creation de la relation *event/consultant*
-----
-MERGE (consultantAOR)-[:PARTICIPE]->(evtDevFest)
-MERGE (consultantVUJ)-[:PARTICIPE]->(evtDevFest)
-MERGE (consultantFNE)-[:PARTICIPE]->(evtDevFest)
-MERGE (consultantFNE)-[:PARTICIPE]->(evtGoogleIO)
-MERGE (consultantACE)-[:PARTICIPE]->(evtDevFest)
-MERGE (consultantACE)-[:PARTICIPE]->(evtDevoxMaroc)
-----
-
 .Creation de la relation *personne/adresse*
 ----
 MERGE (personneVUJ)-[:RESIDE]->(adresseParisVUJ)
@@ -77,9 +7,9 @@ MERGE (personneVUJ)-[:RESIDE]->(adresseMaisdonVUJ)
 
 .Creation de la relation *consultant/echanges*
 ----
-MERGE (personneVUJ)-[:A ECHANGE]->(cntactMailVUJ)
-MERGE (personneVUJ)-[:A ECHANGE]->(cntactTelVUJ)
-MERGE (personneVUJ)-[:A ECHANGE]->(cntactCourVUJ)
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactMailVUJ)
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactTelVUJ)
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactCourVUJ)
 ----
 
 .Creation de la relation *consultantZ/Facture*
@@ -158,4 +88,3 @@ MERGE (transaction19)-[:AFFECTE]->(compteAgence)
 MERGE (transaction20)-[:AFFECTE]->(compteAgence)
 MERGE (transaction21)-[:AFFECTE]->(compteAgence)
 ----
-
