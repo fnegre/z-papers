@@ -1,7 +1,9 @@
 .Creation de l'entite *black/white list*
+----
 MERGE(whiteList:WhiteList{libelle:'WhiteList'})
 MERGE(blackList:BlackList{libelle:'BlackList'})
 ----
+
 
 .Creation de l'entite *pays*
 ----
