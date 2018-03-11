@@ -15,6 +15,15 @@ mot clef : -[]->
 (sans relation)
 
 
+## Faire quelques requêtes Match
+
+TODO : Montrer le fonctionnement de match
+
+* Match simple
+* Match + where
+
+
+
 ## Import en masse
 
 Todo cypher code import via csv, voir : https://neo4j.com/graphgist/importing-csv-files-with-cypher
@@ -37,7 +46,18 @@ TODO Cypher Code
 ## Identification des transactions frauduleuses
 
 TODO Cypher Code avec
-mot clef MATCH
+
+
+// Retour aux slides
+
+
+## Présentation du count
+
+cypher code : Count présence Consultant Z dans les locaux de l'agence lors de chaque virement frauduleux
+
+// voir qu'Olivier Huber était présent dans les locaux Zenika lors de chaque virement frauduleux
+
+Suspect n°1
 
 
 
@@ -61,12 +81,4 @@ MERGE (contact1)-[:PARTICIPANT]->(entite2)
 MERGE (contact1)-[:LIEU]->(position1)
 
 RETURN *
-----
-
-
-.Tout renvoyer
-[source,cypher]
-----
-MATCH (n)
-RETURN n;
 ----
