@@ -1,0 +1,90 @@
+//.Creation de la relation *personne/adresse*
+//----
+MERGE (personneVUJ)-[:RESIDE]->(adresseParisVUJ)
+MERGE (personneVUJ)-[:RESIDE]->(adresseNantesVUJ)
+MERGE (personneVUJ)-[:RESIDE]->(adresseMaisdonVUJ)
+//----
+
+//.Creation de la relation *consultant/echanges*
+//----
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactMailVUJ)
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactTelVUJ)
+MERGE (personneVUJ)-[:A_ECHANGE]->(contactCourVUJ)
+//----
+
+//.Creation de la relation *consultantZ/Facture*
+//----
+MERGE (consultantVUJ)-[:EMET]->(factureNdfTelVUJ)
+MERGE (consultantVUJ)-[:EMET]->(factureNdfBureauVUJ)
+MERGE (consultantVUJ)-[:EMET]->(factureNdfMacVUJ)
+MERGE (consultantABO)-[:EMET]->(factureNdfABO)
+MERGE (consultantABO)-[:EMET]->(factureDiversABO)
+MERGE (consultantABO)-[:EMET]->(factureRepasABO)
+MERGE (consultantABO)-[:EMET]->(factureRDVABO)
+MERGE (consultantAOR)-[:EMET]->(factureTelAOR)
+MERGE (consultantAOR)-[:EMET]->(factureDiversAOR)
+MERGE (consultantAOR)-[:EMET]->(factureDivers1AOR)
+MERGE (consultantAOR)-[:EMET]->(factureDivers2AOR)
+//----
+
+//.Creation de la relation *Compta/Facture*
+//----
+MERGE(comptaNantes)-[:VALIDE]->(factureNdfTelVUJ)
+MERGE(comptaNantes)-[:VALIDE]->(factureNdfBureauVUJ)
+MERGE(comptaNantes)-[:VALIDE]->(factureNdfMacVUJ)
+MERGE(comptaNantes)-[:VALIDE]->(factureNdfABO)
+MERGE(comptaNantes)-[:VALIDE]->(factureDiversABO)
+MERGE(comptaNantes)-[:VALIDE]->(factureRepasABO)
+MERGE(comptaNantes)-[:VALIDE]->(factureNdfABO)
+MERGE(comptaNantes)-[:VALIDE]->(factureRDVABO)
+MERGE(comptaNantes)-[:VALIDE]->(factureTelAOR)
+MERGE(comptaNantes)-[:VALIDE]->(factureDiversAOR)
+//----
+
+//.Creation de la realtion *transaction/Compte*
+//----
+MERGE (transaction1)-[:AFFECTE]->(compteAgence)
+MERGE (transaction1)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction2)-[:AFFECTE]->(compteAgence)
+MERGE (transaction2)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction3)-[:AFFECTE]->(compteAgence)
+MERGE (transaction3)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction4)-[:AFFECTE]->(compteAgence)
+MERGE (transaction4)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction21)-[:AFFECTE]->(compteAgence)
+MERGE (transaction21)-[:AFFECTE]->(compteVUJ)
+
+MERGE (transaction5)-[:AFFECTE]->(compteAgence)
+MERGE (transaction5)-[:AFFECTE]->(compteAgenceParis)
+MERGE (transaction6)-[:AFFECTE]->(compteAgence)
+MERGE (transaction7)-[:AFFECTE]->(compteAgence)
+MERGE (transaction8)-[:AFFECTE]->(compteAgence)
+MERGE (transaction8)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction8)-[:AFFECTE]->(compteFNE)
+MERGE (transaction8)-[:AFFECTE]->(compteABO)
+MERGE (transaction8)-[:AFFECTE]->(compteAOR)
+MERGE (transaction8)-[:AFFECTE]->(compteACE)
+MERGE (transaction9)-[:AFFECTE]->(compteAgence)
+MERGE (transaction9)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction9)-[:AFFECTE]->(compteFNE)
+MERGE (transaction9)-[:AFFECTE]->(compteABO)
+MERGE (transaction9)-[:AFFECTE]->(compteAOR)
+MERGE (transaction9)-[:AFFECTE]->(compteACE)
+MERGE (transaction10)-[:AFFECTE]->(compteAgence)
+MERGE (transaction10)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction10)-[:AFFECTE]->(compteFNE)
+MERGE (transaction10)-[:AFFECTE]->(compteABO)
+MERGE (transaction10)-[:AFFECTE]->(compteAOR)
+MERGE (transaction10)-[:AFFECTE]->(compteACE)
+MERGE (transaction11)-[:AFFECTE]->(compteAgence)
+MERGE (transaction12)-[:AFFECTE]->(compteVUJ)
+MERGE (transaction13)-[:AFFECTE]->(compteFNE)
+MERGE (transaction14)-[:AFFECTE]->(compteABO)
+MERGE (transaction15)-[:AFFECTE]->(compteAOR)
+MERGE (transaction16)-[:AFFECTE]->(compteACE)
+MERGE (transaction17)-[:AFFECTE]->(compteAgence)
+MERGE (transaction18)-[:AFFECTE]->(compteAgence)
+MERGE (transaction19)-[:AFFECTE]->(compteAgence)
+MERGE (transaction20)-[:AFFECTE]->(compteAgence)
+MERGE (transaction21)-[:AFFECTE]->(compteAgence)
+//----
