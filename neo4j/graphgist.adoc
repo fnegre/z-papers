@@ -2,6 +2,45 @@
 
 
 ## Transactions bancaires
+
+TODO Cypher Code présentant la notion d'entité avec les entités + attributs transaction
+Mot clef : CREATE, MERGE, RETURN
+(sans relation)
+
+
+## Transactions bancaires + relations
+
+TODO Cypher Code présenter la notion de relations
+mot clef : -[]->
+(sans relation)
+
+
+## Import en masse
+
+Todo cypher code import via csv, voir : https://neo4j.com/graphgist/importing-csv-files-with-cypher
+Montrer l'import en batch de X élements USING PERIODIC COMMIT 500
+
+## Ajout d'index
+
+TODO Cypher code, création d'index
+
+## Création de contraine unique
+
+TODO Cyphr code : création de contrainte unique : éviter d'avoir plusieurs banques identiques par exemple
+Exemple : CREATE CONSTRAINT ON (person:Person) ASSERT person.id IS UNIQUE
+
+## Création white list et black list
+
+TODO Cypher Code
+
+
+## Identification des transactions frauduleuses
+
+TODO Cypher Code avec
+mot clef MATCH
+
+
+
 .Modélistion
 //hide
 [source,cypher]
