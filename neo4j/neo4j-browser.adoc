@@ -1,0 +1,22 @@
+## Présentation Neo4J Browser
+
+// Présenter les fonctionnalités qui ne sont pas supportés par Graphgist
+// Créer des favoris / ou un répertoire de requêtes sur Neo4J Browser
+
+
+### Distance
+
+Cypher Code Calcul de distance
+mot clef : distance, point, with
+
+
+### Requête pour extraire le modèle
+
+MATCH (a)-[r]->(b) WHERE labels(a) <> [] AND labels(b) <> []
+RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That LIMIT 10
+
+### Requête Shortest Path
+
+shortestPath((n1:Person)-[*..6]-(n2:Person))
+Va permettre de trouver le coupable en trouvant que la personne était près de la banque le jour de
+l'ouverture du compte

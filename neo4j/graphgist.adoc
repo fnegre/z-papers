@@ -2,6 +2,65 @@
 
 
 ## Transactions bancaires
+
+TODO Cypher Code présentant la notion d'entité avec les entités + attributs transaction
+Mot clef : CREATE, MERGE, RETURN
+(sans relation)
+
+
+## Transactions bancaires + relations
+
+TODO Cypher Code présenter la notion de relations
+mot clef : -[]->
+(sans relation)
+
+
+## Faire quelques requêtes Match
+
+TODO : Montrer le fonctionnement de match
+
+* Match simple
+* Match + where
+
+
+
+## Import en masse
+
+Todo cypher code import via csv, voir : https://neo4j.com/graphgist/importing-csv-files-with-cypher
+Montrer l'import en batch de X élements USING PERIODIC COMMIT 500
+
+## Ajout d'index
+
+TODO Cypher code, création d'index
+
+## Création de contraine unique
+
+TODO Cyphr code : création de contrainte unique : éviter d'avoir plusieurs banques identiques par exemple
+Exemple : CREATE CONSTRAINT ON (person:Person) ASSERT person.id IS UNIQUE
+
+## Création white list et black list
+
+TODO Cypher Code
+
+
+## Identification des transactions frauduleuses
+
+TODO Cypher Code avec
+
+
+// Retour aux slides
+
+
+## Présentation du count
+
+cypher code : Count présence Consultant Z dans les locaux de l'agence lors de chaque virement frauduleux
+
+// voir qu'Olivier Huber était présent dans les locaux Zenika lors de chaque virement frauduleux
+
+Suspect n°1
+
+
+
 .Modélistion
 //hide
 [source,cypher]
@@ -22,12 +81,4 @@ MERGE (contact1)-[:PARTICIPANT]->(entite2)
 MERGE (contact1)-[:LIEU]->(position1)
 
 RETURN *
-----
-
-
-.Tout renvoyer
-[source,cypher]
-----
-MATCH (n)
-RETURN n;
 ----
