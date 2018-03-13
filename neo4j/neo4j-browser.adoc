@@ -1,16 +1,17 @@
 ## Présentation Neo4J Browser
 
-
 //
 // https://neo4j.com/docs/cypher-refcard/current/
 // Présenter les fonctionnalités qui ne sont pas supportés par Graphgist
 // Créer des favoris / ou un répertoire de requêtes sur Neo4J Browser
 
 
-TODO : Ajouter des choses dans le local storage
-
 ## Graphe contenant jusqu'à la partie blacklist de pays
 
+[source,cypher]
+----
+TODO
+----
 
 
 ## Génération d'un graphe modele
@@ -51,8 +52,6 @@ RETURN nodes(path)
 TODO : à faire
 [source,cypher]
 ```
-MATCH path =(t:Transaction)-[*..*]-(b:Blacklist)
-RETURN nodes(path)
 ```
 
 
@@ -60,7 +59,6 @@ RETURN nodes(path)
 
 // documentation conversion date : https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
 
-TODO : renvoyer plutôt le nom de la personne que sa date d'embauche
 [source,cypher]
 ```
 Match (c:Consultant)--(p:Personne)
@@ -117,30 +115,29 @@ WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point(
 MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
 ----
 
+.Créer une relation PROCHE entre chaque lieu dont la distance est inférieure à 10 km
+[source,cypher]
+----
+
+----
 
 ### Requête : trouver qui est lié à la banque
 
-// Shortest Path
 TODO en cours
 [source,cypher]
 ----
-Match path = (p:Entite)-[*..4]-(l:Position{libelle:"Quick"})
+Match path = (p:Entite)-[*..4]-[PROCHE]-(l:Position{libelle:"Banque Offshore"})
 return  nodes(path)
 ORDER BY LENGTH(path) limit 1
 ----
 
 
 
+
+
+
 ### Aller plus loin
 https://neo4j-contrib.github.io/neo4j-apoc-procedures/
-
-
-
-
-
-
-
-
 
 
 ## Commandes utilitaires pour nous
