@@ -5,6 +5,9 @@
 // Présenter les fonctionnalités qui ne sont pas supportés par Graphgist
 // Créer des favoris / ou un répertoire de requêtes sur Neo4J Browser
 
+
+TODO : Ajouter des choses dans le local storage
+
 ## Graphe contenant jusqu'à la partie blacklist de pays
 
 
