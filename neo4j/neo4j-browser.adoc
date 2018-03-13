@@ -76,7 +76,7 @@ TODO
 ```
 // --> Olivier
 
-## Requête permettant de trouver les consultatns à l'étranger à l'ouverture du compte
+## Requête permettant de trouver les consultants à l'étranger à l'ouverture du compte
 
 TODO
 [source,cypher]
