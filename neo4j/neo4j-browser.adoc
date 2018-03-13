@@ -19,7 +19,7 @@ TODO : Ajouter des choses dans le local storage
 ```
 // extraction modele
 MATCH (a)-[r]->(b) WHERE labels(a) <> [] AND labels(b) <> []
-RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That LIMIT 10
+RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That LIMIT 100
 ```
 
 [source,cypher]
@@ -35,12 +35,14 @@ RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That 
  RETURN distinct l as first_node, rel_type as connected_by, l2 as second_node
 ```
 
+Puis faire `match(n:Node)--(m) return n,m`
+
 ## Requête permettant de trouver les requêtes frauduleuses (pays de la banque sur blacklist)
 
-TODO : A tester
 [source,cypher]
 ```
-MATCH path =(t:Transaction)-[*..*]-(b:Blacklist)
+// Requetes frauduleuses
+MATCH path =(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
 RETURN nodes(path)
 ```
 
@@ -56,12 +58,14 @@ RETURN nodes(path)
 
 ## Requête permettant de filtrer les consultants arrivés avant les transactions frauduleuses
 
-TODO
+// documentation conversion date : https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
+
+TODO : renvoyer plutôt le nom de la personne que sa date d'embauche
 [source,cypher]
 ```
-Match (c:Consultant)
-WHERE apoc.date.parse(c.dateEmbauche,['s'],['dd/MM//yyyy']) < 01/06/2018
-RETURN c
+Match (c:Consultant)--(p:Personne)
+WHERE apoc.date.parse(c.dateEmbauche,'s','yyyy-MM-dd') < apoc.date.parse('2017-06-01','s','yyyy-MM-dd')
+RETURN c,p
 ```
 
 

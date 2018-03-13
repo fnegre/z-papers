@@ -138,6 +138,8 @@ MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
 //MERGE(compteAOR)-[:RESIDE]->(paysFR)
 //----
 
+// Creation de la relation 'compte/banque'
+MERGE(compteOffShore)-[:OUVERT_CHEZ]->(banqueUTB)
 
 //.Creation de la relation *compte/personne*
 //----
@@ -338,13 +340,13 @@ MERGE(transaction14:Transaction{sens:'D',date:'2017-03-20',ibanDestinataire:'IBA
 MERGE(transaction15:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'parking',montant:450.00,ip:'177.10.4.1'})
 MERGE(transaction16:Transaction{sens:'D',date:'2017-03-24',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'autres',montant:600.00,ip:'177.10.4.1'})
 MERGE(transaction17:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction18:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction19:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction20:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
+MERGE(transaction18:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:110.00,ip:'177.10.4.1'})
+MERGE(transaction19:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:120.00,ip:'177.10.4.1'})
+MERGE(transaction20:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:130.00,ip:'177.10.4.1'})
 
 //----
 
-//.Creation de la realtion *transaction/Compte*
+//.Creation de la relation *transaction/Compte*
 //----
 MERGE (transaction5)-[:AFFECTE]->(compteAgence)
 MERGE (transaction5)-[:AFFECTE]->(compteAgenceParis)
@@ -363,6 +365,27 @@ MERGE (transaction17)-[:AFFECTE]->(compteAgenceCE)
 MERGE (transaction18)-[:AFFECTE]->(compteAgenceCE)
 MERGE (transaction19)-[:AFFECTE]->(compteAgenceCE)
 MERGE (transaction20)-[:AFFECTE]->(compteAgenceCE)
+//----
+
+//.Creation de la relation *transaction vers Compte destinataire*
+//----
+MERGE (transaction5)-[:VERS]->(compteAgence)
+MERGE (transaction5)-[:VERS]->(compteAgenceParis)
+MERGE (transaction6)-[:VERS]->(compteAgence)
+MERGE (transaction7)-[:VERS]->(compteAgenceCE)
+MERGE (transaction8)-[:VERS]->(compteAgenceCE)
+MERGE (transaction9)-[:VERS]->(compteAgenceCE)
+MERGE (transaction10)-[:VERS]->(compteAgenceCE)
+MERGE (transaction11)-[:VERS]->(compteAgenceCE)
+MERGE (transaction12)-[:VERS]->(compteAgenceCE)
+MERGE (transaction13)-[:VERS]->(compteAgenceCE)
+MERGE (transaction14)-[:VERS]->(compteAgenceCE)
+MERGE (transaction15)-[:VERS]->(compteAgenceCE)
+MERGE (transaction16)-[:VERS]->(compteAgenceCE)
+MERGE (transaction17)-[:VERS]->(compteOffShore)
+MERGE (transaction18)-[:VERS]->(compteOffShore)
+MERGE (transaction19)-[:VERS]->(compteOffShore)
+MERGE (transaction20)-[:VERS]->(compteOffShore)
 //----
 
 //.Creation relation *transactions/position*
