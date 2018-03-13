@@ -1,5 +1,5 @@
-personne, transaction-date, transaction-libelle
-Jouet Club, '01-01-2018', 'Noel CE'
-Florian, '01-01-2018', 'NDF Soiree Hashcode'
-Vickrame, '10-02-2018', 'NDF Nightclazz'
-Vickrame, '15-02-2018', 'NDF TZ'
+personne, transaction-date, transaction-libelle, transaction-montant
+Jouet Club, '01-01-2018', 'Noel CE', 500.00
+Florian, '01-01-2018', 'NDF Soiree Hashcode', 50.00
+Vickrame, '10-02-2018', 'NDF Nightclazz', 75.00
+Vickrame, '15-02-2018', 'NDF TZ', 80.00
