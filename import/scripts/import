@@ -3,30 +3,8 @@ LOAD CSV WITH HEADERS FROM "file:///Users/pc/dev/workspace/z-papers/import/scrip
 MERGE (transactionCSV:Transaction {id:row.id})
 ON CREATE SET transactionCSV.sens = row.sens,
               transactionCSV.date = row.date,
-              transactionCSV.destinataire = row.destinataire,
-              transactionCSV.emetteur =row.emetteur,
+              transactionCSV.ibanDestinataire = row.ibanDestinataire,
+              transactionCSV.ibanEmetteur =row.ibanEmetteur,
               transactionCSV.libelle = row.libelle,
+              transactionCSV.ip = row.ip
               transactionCSV.montant = row.montant;
-
-
-// a tester un consultant qui emet une facture
-
-//consultant
-LOAD CSV WITH HEADERS FROM "file:///Users/pc/dev/workspace/z-papers/import/scripts/consultant.csv" AS row_consultant
-MERGE (consultantZ:Consultant {id:row_consultant.id})
-ON CREATE SET consultantZ.email = row_consultant.email,
-              consultantZ.tel = row_consultant.tel;
-
-//facture
-LOAD CSV WITH HEADERS FROM "file:///Users/pc/dev/workspace/z-papers/import/scripts/transactions.csv" AS row_consultant
-MERGE (factureZ:Facture {id:row_consutant.facture_id})
-ON CREATE SET factureZ.libelle = row_consutant.facture_libelle,
-              factureZ.destinataire = row_consutant.facture_destinataire,
-              factureZ.montant = row_consutant.facture_montant,
-              factureZ.dateDepense =row_consutant.facture_dateDepense;
-
-
-LOAD CSV WITH HEADERS FROM "file:///Users/pc/dev/workspace/z-papers/import/scripts/transactions.csv" AS row_consultant
-MATCH(consutantZ:Consultant{id:row_consultant.id})
-MATCH(factureZ:Facture{id:row_consultant.facture_id})
-MERGE (consultantZ)-[:EMET]->(factureZ);
