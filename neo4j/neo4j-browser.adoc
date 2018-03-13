@@ -108,11 +108,14 @@ MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
 ### Requête : trouver qui est lié à la banque
 
 // Shortest Path
-
+TODO en cours
 [source,cypher]
 ----
-shortestPath((n1:Person)-[*..6]-(n2:Person))
+Match path = (p:Entite)-[*..4]-(l:Position{libelle:"Quick"})
+return  nodes(path)
+ORDER BY LENGTH(path) limit 1
 ----
+
 
 
 ### Aller plus loin
