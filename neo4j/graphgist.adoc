@@ -1,22 +1,27 @@
 # Zenika Papers
 
 // Graph Gist : https://portal.graphgist.org/
-//
+// Syntaxe : https://neo4j.com/graphgist/how-to-create-a-graphgist
 
-## Transactions bancaires
+## Ma 1ère Transaction bancaire
 
-TODO Cypher Code présentant la notion d'entité avec les entités + attributs transaction
-Mot clef : CREATE, MERGE, RETURN
-(sans relation)
-
+Mot clef : CREATE, RETURN
+// Date https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
 
 [source,cypher]
 ----
-MERGE(transaction1:Transaction{sens:'D',date:'2017-01-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2000.00})
-MERGE(transaction2:Transaction{sens:'D',date:'2017-02-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2000.00})
-MERGE(transaction3:Transaction{sens:'D',date:'2017-03-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2600.00})
-MERGE(transaction4:Transaction{sens:'D',date:'2017-04-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2100.00})
+CREATE(t1:Transaction{date:'2017-01-01', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00})
+RETURN *
+----
+//graph
 
+## Plusieurs transactions bancaires
+
+[source,cypher]
+----
+MERGE(t1:Transaction{date:'2017-01-01', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00})
+MERGE(t2:Transaction{date:'2017-01-11', destinataire:'Jouet Club',libelle:'arbre de noel',montant:500.00})
+MERGE(t3:Transaction{date:'2017-05-01', destinataire:'Agence Nantes',libelle:'remboursement frais',montant:1000.00})
 RETURN *
 ----
 
@@ -27,8 +32,9 @@ RETURN *
 
 [source,cypher]
 ----
-MERGE(personneVUJ:Personne{nom:'Ujoodha',prenom:'Vickrame',dateNaissance:'1979-06-21',sexe:'M',compteGithub:'vickrame',compteTwitter:'@RuvaChlea',profession:'developpeur'})
-MERGE(personneFNE:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'@floriannegre',profession:'developpeur'})
+MERGE(p1:Personne{nom:'Le Houblon Forever', position:'1 rue Gresset, 44000 Nantes'})
+MERGE(p2:Personne{nom:'Ujoodha', prenom:'Vickrame', dateNaissance:'1979-06-21', sexe:'M',compteGithub:'vickrame',compteTwitter:'RuvaChlea',profession:'developpeur', _libelle:'VUJ' })
+MERGE(p3:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'floriannegre',profession:'developpeur'})
 RETURN *
 ----
 
@@ -37,19 +43,68 @@ RETURN *
 
 ## Relation entre les transactions et les bénéficiaires
 
+mot clef : `-[]->`
 
-TODO Cypher Code présenter la notion de relations
-mot clef : -[]->
-(sans relation)
+[source,cypher]
+----
+MERGE(transaction1:Transaction{sens:'D', emetteur:'CE', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00, date:'2017-01-01'})
+MERGE(personneLHF:Personne{nom:'Le Houblon Forever', position:'1 rue Gresset, 44000 Nantes'})
+MERGE (transaction1)-[:VERS]->(personneLHF)
+RETURN *
+----
+
+//graph
+
+## Suppression des données
+
+//hide
+[source,cypher]
+----
+MATCH (n)
+DETACH DELETE n
+----
+
+## Creation de noeuds et de relations
+//hide
+[source,cypher]
+----
+CREATE(t1:Transaction{libelle:'Bieres', montant:150.00, date:'2018-01-01'})
+CREATE(t2:Transaction{libelle:'Bieres', montant:1000.00, date:'2018-01-02'})
+CREATE(t3:Transaction{libelle:'Noel CE', montant:500.00, date:'2017-12-01'})
+CREATE(p1:Personne{nom:'Bières d\'ailleurs'})
+CREATE(p2:Personne{nom:'Jouet Club'})
+CREATE (t1)-[:VERS]->(p1)
+CREATE (t2)-[:VERS]->(p1)
+CREATE (t3)-[:VERS]->(p2)
+RETURN *
+----
+
+## Recherche de transactions
+
+[source,cypher]
+----
+MATCH (t:Transaction)-[:VERS]->(b)
+RETURN t, b
+----
+
+//graph_result
 
 
-## Faire quelques requêtes Match
 
-TODO : Montrer le fonctionnement de match
+[source,cypher]
+----
+MATCH (t:Transaction)-[:VERS]->(b)
+where t.montant > 200
+RETURN t, beneficiaires
+----
 
-* Match simple
-* Match + where
-
+[source,cypher]
+----
+MATCH (t:Transaction)-[:VERS]->(b)
+where t.montant > 150
+and b.nom = 'Jouet Club'
+RETURN t, b
+----
 
 
 ## Import en masse
@@ -87,26 +142,3 @@ cypher code : Count présence Consultant Z dans les locaux de l'agence lors de c
 
 Suspect n°1
 
-
-
-.Modélistion
-//hide
-[source,cypher]
-----
-MERGE (entite1:Entite {nom: 'Florian Negre', date_naissance: '19/05/1986'})
-MERGE (entite2:Entite {nom: 'Vickrame'})
-MERGE (contact1:Contact {date: '09/03/2018', type: 'Hangout', contenu: 'technozaures'})
-MERGE (position1:Position {libelle: 'CBP', latitude: 47.22195, longitude: -1.6265260000000126})
-MERGE (position2:Position {libelle: 'Quick', latitude: 47.22228089999999, longitude: -1.62676799999997})
-MERGE (position3:Position {libelle: 'Société Générale de Banque aux Antilles Agence de Jarry', latitude: 16.2425049, longitude: -61.56335150000001})
-MERGE (compte1:Compte {name:'Compte Florian', date:'01-01-2018 14h35'})
-MERGE (transaction1:Transaction {credit: 10, date:'01-01-2018 14h35'})
-
-MERGE (entite1) -[:POSSEDE]->(compte1)
-MERGE (transaction1)-[:VERS]->(compte1)
-MERGE (contact1)-[:PARTICIPANT]->(entite1)
-MERGE (contact1)-[:PARTICIPANT]->(entite2)
-MERGE (contact1)-[:LIEU]->(position1)
-
-RETURN *
-----

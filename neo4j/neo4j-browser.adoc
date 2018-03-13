@@ -3,6 +3,8 @@
 // Présenter les fonctionnalités qui ne sont pas supportés par Graphgist
 // Créer des favoris / ou un répertoire de requêtes sur Neo4J Browser
 
+## Identification des transactions frauduleuses
+
 
 ### Distance
 
@@ -20,3 +22,10 @@ RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That 
 shortestPath((n1:Person)-[*..6]-(n2:Person))
 Va permettre de trouver le coupable en trouvant que la personne était près de la banque le jour de
 l'ouverture du compte
+
+
+### Exporter ses favoris depuis le browser
+Source : https://neo4j.com/developer/kb/how-do-i-export-cypher-favorites-recorded-in-the-browser/
+
+var res = JSON.parse(localStorage.getItem('neo4j.documents'))
+for (x in res) { console.log(res[x]['content']) }
