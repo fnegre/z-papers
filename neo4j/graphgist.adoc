@@ -64,84 +64,57 @@ MATCH (n)
 DETACH DELETE n
 ----
 
-## Creation de noeuds et de relations
-//hide
+## Import en masse
+
+// https://neo4j.com/graphgist/importing-csv-files-with-cypher
+
 [source,cypher]
 ----
-CREATE(t1:Transaction{libelle:'Bieres', montant:150.00, date:'2018-01-01'})
-CREATE(t2:Transaction{libelle:'Bieres', montant:1000.00, date:'2018-01-02'})
-CREATE(t3:Transaction{libelle:'Noel CE', montant:500.00, date:'2017-12-01'})
-CREATE(p1:Personne{nom:'Bières d\'ailleurs'})
-CREATE(p2:Personne{nom:'Jouet Club'})
-CREATE (t1)-[:VERS]->(p1)
-CREATE (t2)-[:VERS]->(p1)
-CREATE (t3)-[:VERS]->(p2)
-RETURN *
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/fnegre/z-papers/master/neo4j/csv/persons.csv" AS csvLine
+MERGE (p:Personne {nom: csvLine.personne})
+MERGE (t:Transaction {libelle: csvLine.transactionLibelle, montant: toInt(csvLine.transactionMontant), date: csvLine.transactionDate})
+MERGE (t)-[:VERS]->(p)
+RETURN p, t
 ----
+//graph_result
 
 ## Recherche de transactions
 
+.Recherche de relations
 [source,cypher]
 ----
 MATCH (t:Transaction)-[:VERS]->(b)
 RETURN t, b
 ----
-
 //graph_result
 
 
-
+.Recherche de relations avec un critère
 [source,cypher]
 ----
 MATCH (t:Transaction)-[:VERS]->(b)
-where t.montant > 200
-RETURN t, beneficiaires
-----
-
-[source,cypher]
-----
-MATCH (t:Transaction)-[:VERS]->(b)
-where t.montant > 150
-and b.nom = 'Jouet Club'
+where t.montant > 50
 RETURN t, b
 ----
+//graph_result
 
 
-## Import en masse
+.Recherche de relations avec 2 critères (en utilisant 2 syntaxes différentes)
+[source,cypher]
+----
+MATCH (t:Transaction)-[:VERS]->(b{nom : 'Jouet Club'})
+where t.montant > 50
+RETURN t, b
+----
+//graph_result
 
-Todo cypher code import via csv, voir : https://neo4j.com/graphgist/importing-csv-files-with-cypher
-Montrer l'import en batch de X élements USING PERIODIC COMMIT 500
-LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/fnegre/z-papers/master/neo4j/csv/persons.csv" AS csvLine
-MERGE (p:Personne {name: csvLine.personne})
-MERGE (t:Transaction {libelle: csvLine.transactionLibelle, montant: csvLine.transactionMontant, date: csvLine.trasactionDate})
-MERGE (t)-[:VERS]->(p)
-## Ajout d'index
+.Recherche avec résultat sous forme de count
 
-TODO Cypher code, création d'index
-
-## Création de contraine unique
-
-TODO Cyphr code : création de contrainte unique : éviter d'avoir plusieurs banques identiques par exemple
-Exemple : CREATE CONSTRAINT ON (person:Person) ASSERT person.id IS UNIQUE
-
-## Création white list et black list
-
-TODO Cypher Code
-
-
-## Identification des transactions frauduleuses
-
-TODO Cypher Code avec
-
-
-// Retour aux slides
-
-
-## Présentation du count
-
-cypher code : Count présence Consultant Z dans les locaux de l'agence lors de chaque virement frauduleux
-
-// voir qu'Olivier Huber était présent dans les locaux Zenika lors de chaque virement frauduleux
-
-Suspect n°1
-
+[source,cypher]
+----
+MATCH (t:Transaction)-[:VERS]->(b)
+where t.montant > 50
+and b.nom = 'Jouet Club'
+RETURN count(t)
+----
+//table
