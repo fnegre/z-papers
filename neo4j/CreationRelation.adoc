@@ -1,15 +1,150 @@
-.Creation de la relation *personne/adresse*
+.Creation de la relation *pays/blackList*
 ----
-MERGE (personneVUJ)-[:RESIDE]->(adresseParisVUJ)
-MERGE (personneVUJ)-[:RESIDE]->(adresseNantesVUJ)
-MERGE (personneVUJ)-[:RESIDE]->(adresseMaisdonVUJ)
+ MERGE(paysFR)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysUS)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysMU)-[:APPARTIENT]-> (blackList)
+ MERGE(paysGB)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysCA)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysTU)-[:APPARTIENT]-> (blackList)
 ----
 
-.Creation de la relation *consultant/echanges*
+.Creation de la relation *banque/blackList*
 ----
-MERGE (personneVUJ)-[:A_ECHANGE]->(contactMailVUJ)
-MERGE (personneVUJ)-[:A_ECHANGE]->(contactTelVUJ)
-MERGE (personneVUJ)-[:A_ECHANGE]->(contactCourVUJ)
+MERGE (banqueSG)-[:FAIT_PARTI]->(whiteList)
+MERGE (banqueBNP)-[:FAIT_PARTI]->(whiteList)
+MERGE (banqueUTB)-[:FAIT_PARTI]->(blackList)
+MERGE (banqueCA)-[:FAIT_PARTI]->(whiteList)
+----
+
+.Creation de la relation *personne/type de personne*
+----
+MERGE (personneVUJ)–[:EST]->(typePersonneP)
+MERGE (personneFNE)–[:EST]->(typePersonneP)
+MERGE (personneABO)–[:EST]->(typePersonneP)
+MERGE (personneAOR)–[:EST]->(typePersonneP)
+MERGE (personneACE)–[:EST]->(typePersonneP)
+MERGE (personneBPI)–[:EST]->(typePersonneP)
+MERGE (personneFisc)–[:EST]->(typePersonneP)
+MERGE (personneRestaurateur)–[:EST]->(typePersonneM)
+MERGE (personneImprimeur)–[:EST]->(typePersonneM)
+MERGE (personneAUJ)–[:EST]->(typePersonneP)
+MERGE(personneOHU)-[:EST]->(typePersonneP)
+MERGE(personneJLA)-[:EST]->(typePersonneP)
+MERGE (personneDMI)–[:EST]->(typePersonneP)
+MERGE (personneFAB)–[:EST]->(typePersonneP)
+MERGE (personneBPET)–[:EST]->(typePersonneP)
+MERGE (personneLDUP)–[:EST]->(typePersonneP)
+----
+
+
+.Creation de la relation *personne/pays*
+----
+MERGE(personneVUJ)-[:VOYAGE]->(paysTU)
+MERGE(personneVUJ)-[:VOYAGE]->(paysMU)
+MERGE(personneJLA)-[:VOYAGE]->(paysTU)
+MERGE(personneJLA)-[:VOYAGE]->(paysUS)
+MERGE(personneVUJ)-[:VOYAGE]->(paysGB)
+MERGE(personneABO)-[:VOYAGE]->(paysCA)
+----
+
+.Creation de la relation *agence/pays*
+----
+MERGE(agenceNantes)-[:RESIDE]->(paysFR)
+MERGE(agenceParis)-[:RESIDE]->(paysFR)
+----
+
+.Creation de la relation *compte/pays*
+----
+MERGE(compteAgence)-[:RESIDE]->(paysFR)
+MERGE(compteAgenceCE)-[:RESIDE]->(paysFR)
+MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
+MERGE(compteOffShore)-[:RESIDE]->(paysTU)
+MERGE(compteFNE)-[:RESIDE]->(paysFR)
+MERGE(compteVUJ)-[:RESIDE]->(paysFR)
+MERGE(compteABO)-[:RESIDE]->(paysFR)
+MERGE(compteACE)-[:RESIDE]->(paysFR)
+MERGE(compteAOR)-[:RESIDE]->(paysFR)
+----
+
+
+.Creation de la relation *compte/personne*
+----
+MERGE(compteAgence)-[:APPARTIENT]->(agenceNantes)
+MERGE(compteAgenceCE)-[:APPARTIENT]->(agenceNantes)
+MERGE(compteAgenceParis)-[:APPARTIENT]->(agenceParis)
+MERGE(compteFNE)-[:APPARTIENT]->(personneFNE)
+MERGE(compteVUJ)-[:APPARTIENT]->(personneVUJ)
+MERGE(compteABO)-[:APPARTIENT]->(personneABO)
+MERGE(compteACE)-[:APPARTIENT]->(personneACE)
+MERGE(compteAOR)-[:APPARTIENT]->(personneAOR)
+----
+
+.Creation de la relation *consultant/personne*
+----
+MERGE(personneVUJ)-[:EST]->(consultantVUJ)
+MERGE(personneFNE)-[:EST]->(consultantFNE)
+MERGE(personneAOR)-[:EST]->(consultantAOR)
+MERGE(personneJLA)-[:EST]->(consultantJLA)
+MERGE(personneOHU)-[:EST]->(consultantOHU)
+MERGE(personneACE)-[:EST]->(consultantACE)
+MERGE(personneABO)-[:EST]->(consultantABO)
+MERGE(personneFAB)-[:EST]->(consultantFAB)
+MERGE(personneBPE)-[:EST]->(consultantBPE)
+MERGE(personneDMI)-[:EST]->(consultantDMI)
+MERGE(personneLDU)-[:EST]->(consultantLDU)
+----
+
+.Creation de la relation *consultant/agence*
+----
+MERGE(consultantVUJ)-[:TRAVAILLE]->(agenceNantes)
+MERGE(consultantFNE)-[:TRAVAILLE]->(agenceNantes)
+MERGE(consultantAOR)-[:TRAVAILLE]->(agenceNantes)
+MERGE(consultantJLA)-[:TRAVAILLE]->(agenceNantes)
+MERGE(consultantOHU)-[:TRAVAILLE]->(agenceParis)
+MERGE(consultantACE)-[:TRAVAILLE]->(agenceNantes)
+----
+
+.Creation de la relation *consultant/evenement*
+----
+MERGE(consultantVUJ)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantFNE)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantAOR)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantJLA)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantOHU)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantACE)-[:PARTICIPE]->(evtDevFest)
+MERGE(consultantACE)-[:PARTICIPE]->(evtDevoxMaroc)
+MERGE(consultantJLA)-[:PARTICIPE]->(evtGoogleIO)
+MERGE(consultantOHU)-[:PARTICIPE]->(evtVoxxDays)
+MERGE(consultantOHU)-[:PARTICIPE]->(pocker)
+MERGE(consultantAOR)-[:PARTICIPE]->(pocker)
+MERGE(consultantJLA)-[:PARTICIPE]->(pocker)
+MERGE(consultantABO)-[:PARTICIPE]->(pocker)
+----
+
+.Creation de la relation *personne/agence*
+----
+MERGE (personneRestaurateur)-[:TRAVAILLE]->(agenceNantes)
+MERGE (personneImprimeur)-[:TRAVAILLE]->(agenceNantes)
+----
+
+.Creation de la relation *consultant/compte*
+----
+MERGE (consultantABO)-[:ACCEDE]->(compteAgence)
+MERGE (consultantOHU)-[:ACCEDE]->(compteAgenceCE)
+MERGE (consultantAOR)-[:ACCEDE]->(compteAgenceCE)
+MERGE (consultantABO)-[:ACCEDE]->(compteAgenceCE)
+----
+
+.Creation de la relation *consultant/echange*
+----
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA)
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA2)
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA2)
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA3)
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA4)
+MERGE(consultantJLA)-[:A_ECHANGE]->(TelJLA5)
+MERGE(consultantOHU)-[:A_ECHANGE]->(TelOHU1)
+MERGE(consultantOHU)-[:A_ECHANGE]->(TelOHU2)
 ----
 
 .Creation de la relation *consultantZ/Facture*
@@ -43,48 +178,52 @@ MERGE(comptaNantes)-[:VALIDE]->(factureDiversAOR)
 
 .Creation de la realtion *transaction/Compte*
 ----
-MERGE (transaction1)-[:AFFECTE]->(compteAgence)
-MERGE (transaction1)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction2)-[:AFFECTE]->(compteAgence)
-MERGE (transaction2)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction3)-[:AFFECTE]->(compteAgence)
-MERGE (transaction3)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction4)-[:AFFECTE]->(compteAgence)
-MERGE (transaction4)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction21)-[:AFFECTE]->(compteAgence)
-MERGE (transaction21)-[:AFFECTE]->(compteVUJ)
-
 MERGE (transaction5)-[:AFFECTE]->(compteAgence)
 MERGE (transaction5)-[:AFFECTE]->(compteAgenceParis)
 MERGE (transaction6)-[:AFFECTE]->(compteAgence)
-MERGE (transaction7)-[:AFFECTE]->(compteAgence)
-MERGE (transaction8)-[:AFFECTE]->(compteAgence)
-MERGE (transaction8)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction8)-[:AFFECTE]->(compteFNE)
-MERGE (transaction8)-[:AFFECTE]->(compteABO)
-MERGE (transaction8)-[:AFFECTE]->(compteAOR)
-MERGE (transaction8)-[:AFFECTE]->(compteACE)
-MERGE (transaction9)-[:AFFECTE]->(compteAgence)
-MERGE (transaction9)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction9)-[:AFFECTE]->(compteFNE)
-MERGE (transaction9)-[:AFFECTE]->(compteABO)
-MERGE (transaction9)-[:AFFECTE]->(compteAOR)
-MERGE (transaction9)-[:AFFECTE]->(compteACE)
-MERGE (transaction10)-[:AFFECTE]->(compteAgence)
-MERGE (transaction10)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction10)-[:AFFECTE]->(compteFNE)
-MERGE (transaction10)-[:AFFECTE]->(compteABO)
-MERGE (transaction10)-[:AFFECTE]->(compteAOR)
-MERGE (transaction10)-[:AFFECTE]->(compteACE)
-MERGE (transaction11)-[:AFFECTE]->(compteAgence)
-MERGE (transaction12)-[:AFFECTE]->(compteVUJ)
-MERGE (transaction13)-[:AFFECTE]->(compteFNE)
-MERGE (transaction14)-[:AFFECTE]->(compteABO)
-MERGE (transaction15)-[:AFFECTE]->(compteAOR)
-MERGE (transaction16)-[:AFFECTE]->(compteACE)
-MERGE (transaction17)-[:AFFECTE]->(compteAgence)
-MERGE (transaction18)-[:AFFECTE]->(compteAgence)
-MERGE (transaction19)-[:AFFECTE]->(compteAgence)
-MERGE (transaction20)-[:AFFECTE]->(compteAgence)
-MERGE (transaction21)-[:AFFECTE]->(compteAgence)
+MERGE (transaction7)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction8)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction9)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction10)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction11)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction12)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction13)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction14)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction15)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction16)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction17)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction18)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction19)-[:AFFECTE]->(compteAgenceCE)
+MERGE (transaction20)-[:AFFECTE]->(compteAgenceCE)
+----
+
+.Creation relation *transactions/position*
+----
+MERGE (transaction5)-[:EST_LOCALISE]->(positionZenikaParis)
+MERGE (transaction6)-[:EST_LOCALISE]->(positionNantes)
+MERGE (transaction7)-[:EST_LOCALISE]->(positionNantes)
+MERGE (transaction8)-[:EST_LOCALISE]->(positionNantes)
+MERGE (transaction9)-[:EST_LOCALISE]->(positionNantes)
+MERGE (transaction10)-[:EST_LOCALISE]->(positionNantes)
+MERGE (transaction11)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction12)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction13)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction14)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction15)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction16)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction17)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction18)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction19)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE (transaction20)-[:EST_LOCALISE]->(positionZenikaNantes)
+----
+
+
+.Creation de la relation *personne/photo*
+----
+MERGE(personneJLA)-[:EST_PRISE]->(photoJLA)
+----
+
+.Creation de la relation *photo/position*
+----
+MERGE(photoJLA)-[:EST_LOCALISE]->(positionMA)
 ----
