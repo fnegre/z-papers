@@ -71,17 +71,17 @@ MERGE(compteOffShore:Compte{libelle:'OffShore',dateOuverture:'2017-03-01'})
 
 .Creation de l entite *consultant*
 ----
-MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
-MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com',tel:'',dateEmbauche:'2017-09-10'})
-MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantACE:Consultant{email:'antoine.celier@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.com',tel:'',dateEmbauche:'2017-11-10'})
-MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.com',tel:'',dateEmbauche:'2017-08-10'})
-MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.com',tel:'',dateEmbauche:'2018-01-01'})
-MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.com',tel:'',dateEmbauche:'2018-01-10'})
+MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.Com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
+MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.Com',tel:'',dateEmbauche:'2017-09-10'})
+MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantACE:Consultant{email:'antoine.Celier@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.Com',tel:'',dateEmbauche:'2017-11-10'})
+MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.Com',tel:'',dateEmbauche:'2017-08-10'})
+MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.Com',tel:'',dateEmbauche:'2018-01-01'})
+MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.Com',tel:'',dateEmbauche:'2018-01-10'})
 ----
 
 
@@ -152,7 +152,7 @@ MERGE(transaction6:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN
 MERGE(transaction7:Transaction{sens:'D',date:'2017-01-11',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'arbre de noel',montant:500.00,ip:'172.12.24.1'})
 MERGE(transaction8:Transaction{sens:'D',date:'2017-01-25',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'cheque cadeau',montant:3000.00,ip:'172.10.3.41'})
 MERGE(transaction9:Transaction{sens:'D',date:'2017-04-23',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'confort agence',montant:5000.00,ip:'172.10.5.1'})
-MERGE(transaction10:Transaction{sens:'D',date:'2017-03-01'ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'voyages Portugal',montant:5000.00,ip:'172.14.4.1'})
+MERGE(transaction10:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'voyages Portugal',montant:5000.00,ip:'172.14.4.1'})
 MERGE(transaction11:Transaction{sens:'D',date:'2017-05-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'remboursement frais',montant:1000.00,ip:'172.19.54.1'})
 MERGE(transaction12:Transaction{sens:'D',date:'2017-04-10',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'autres',montant:10.00,ip:'172.153.4.1'})
 MERGE(transaction13:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'divers',montant:1000.00,ip:'177.10.4.1'})
@@ -168,5 +168,5 @@ MERGE(transaction20:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBA
 
 .Creation de l'entité *photo*
 ----
-MERGE (photoJLA:PHOTO{libelle:'photo de vacance', date:'2017-03-12})
+MERGE (photoJLA:PHOTO{libelle:'photo de vacance', date:'2017-03-12'})
 ----
