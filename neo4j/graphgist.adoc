@@ -5,7 +5,7 @@
 
 ## Ma 1ère Transaction bancaire
 
-Mot clef : CREATE, RETURN
+Mots clefs : CREATE, RETURN
 // Date https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
 
 [source,cypher]
@@ -67,6 +67,8 @@ DETACH DELETE n
 ## Import en masse
 
 // https://neo4j.com/graphgist/importing-csv-files-with-cypher
+
+Import du fichier csv : https://raw.githubusercontent.com/fnegre/z-papers/master/neo4j/csv/persons.csv
 
 [source,cypher]
 ----
