@@ -1,5 +1,6 @@
 ## Présentation Neo4J Browser
 
+
 //
 // https://neo4j.com/docs/cypher-refcard/current/
 // Présenter les fonctionnalités qui ne sont pas supportés par Graphgist
@@ -36,18 +37,20 @@ RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That 
 
 ## Requête permettant de trouver les requêtes frauduleuses (pays de la banque sur blacklist)
 
-TODO
+TODO : A tester
 [source,cypher]
 ```
-
+MATCH path =(t:Transaction)-[*..*]-(b:Blacklist)
+RETURN nodes(path)
 ```
 
 ## Requête permettant de trouver la localisation des requêtes frauduleuses
 
-TODO
+TODO : à faire
 [source,cypher]
 ```
-
+MATCH path =(t:Transaction)-[*..*]-(b:Blacklist)
+RETURN nodes(path)
 ```
 
 
@@ -56,8 +59,11 @@ TODO
 TODO
 [source,cypher]
 ```
-
+Match (c:Consultant)
+WHERE apoc.date.parse(c.dateEmbauche,['s'],['dd/MM//yyyy']) < 01/06/2018
+RETURN c
 ```
+
 
 ## Requête permettant de filtrer les consultants à l'agence pendant transactions frauduleuses
 

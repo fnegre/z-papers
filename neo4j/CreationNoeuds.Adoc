@@ -63,10 +63,10 @@ MERGE(agenceParis:Agence{libelle:'Zenika Paris'})
 
 .Creation de l entite *consultant*
 ----
-MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.com',tel:'06-18-06-21-55'})
-MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com',tel:''})
-MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com',tel:''})
-MERGE(consultantACE:Consultant{email:'antoine.celier@zenika.com',tel:''})
+MERGE(consultantVUJ:Consultant{dateEmbauche:'01/01/2017',email:'vickrame.ujoodha@zenika.com',tel:'06-18-06-21-55'})
+MERGE(consultantFNE:Consultant{dateEmbauche:'14/09/2018',email:'florian.negre@zenika.com',tel:''})
+MERGE(consultantAOR:Consultant{dateEmbauche:'01/01/2015',email:'amelin.orange@zenika.com',tel:''})
+MERGE(consultantACE:Consultant{dateEmbauche:'01/01/2017',email:'antoine.celier@zenika.com',tel:''})
 ----
 
 
