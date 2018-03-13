@@ -1,3 +1,91 @@
+//.Creation de l'entite *black/white list*
+MERGE(whiteList:BlackList{libelle:'WhiteList', flagBlackList:false})
+MERGE(blackList:BlackList{libelle:'BlackList', flagBlackList:true})
+//----
+
+//.Creation de l'entite *pays*
+//----
+MERGE(paysFR:Pays{libelle:'France',code:'FR'})
+MERGE(paysUS:Pays{libelle:'Etats-Unis',code:'US'})
+MERGE(paysMU:Pays{libelle:'Ile Maurice',code:'MU'})
+MERGE(paysGB:Pays{libelle:'Royaume-Uni',code:'GB'})
+MERGE(paysTU:Pays{libelle:'Tunisie',code:'TU'})
+MERGE(paysCA:Pays{libelle:'Canada',code:'CA'})
+//----
+
+//.Creation de l'entite *banque*
+//----
+MERGE (banqueSG:Banque{libelle:'Société Générale'})
+MERGE (banqueBNP:Banque{libelle:'BNP Paribas'})
+MERGE (banqueUTB:Banque{libelle:'Union Tunisienne de Banque'})
+MERGE (banqueCA:Banque{libelle:'Banque du Quebec'})
+//----
+
+//.Creation du *type de personne*
+//----
+MERGE(typePersonneP:TypePersonne{code:'P',libelle:'physique'})
+MERGE(typePersonneM:TypePersonne{code:'M',libelle:'morale'})
+//----
+
+//.Creation des *personne*
+//----
+MERGE(personneVUJ:Personne{nom:'Ujoodha',prenom:'Vickrame',dateNaissance:'1979-06-21',sexe:'M',compteGithub:'vickrame',compteTwitter:'@RuvaChlea',profession:'developpeur'})
+MERGE(personneFNE:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'@floriannegre',profession:'developpeur'})
+MERGE(personneABO:Personne{nom:'Bonneau',prenom:'Antoine',sexe:'M',compteGithub:'',compteTwitter:'@goodWater',profession:'directeur'})
+MERGE(personneAOR:Personne{nom:'Orenge',prenom:'Amelin',sexe:'M',compteGithub:'amelin',compteTwitter:'@amelin',profession:'developpeur'})
+MERGE(personneACE:Personne{nom:'Celier',prenom:'Antoine',sexe:'M',compteGithub:'antoineCelier',compteTwitter:'@antoineCelier',profession:'developpeur'})
+MERGE(personneBPI:Personne{nom:'Boss',prenom:'Pierre',sexe:'M',compteGithub:'',compteTwitter:'',profession:''})
+MERGE(personneFisc:Personne{nom:'Ministere de la finance',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:'controlleur fiscal'})
+MERGE(personneRestaurateur:Personne{nom:'Restaurant',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:'restaurateur'})
+MERGE(personneImprimeur:Personne{nom:'Imprimerie',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:'imprimeur'})
+MERGE(personneInconnu:Personne{nom:'Inconnu',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:''})
+MERGE(personneAUJ:Personne{nom:'Ujoodha',prenom:'Anne',sexe:'F',compteGithub:'',compteTwitter:'',profession:''})
+MERGE(personneOHU:Personne{nom:'Hubert',prenom:'Olivier',sexe:'M',compteGithub:'',compteTwitter:'',profession:'Responsable formation'})
+MERGE(personneJLA:Personne{nom:'Landure',prenom:'Julien',sexe:'M',compteGithub:'',compteTwitter:'',profession:'CTO'})
+
+
+//.Creation de la relation *pays/blackList*
+ MERGE(paysFR)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysUS)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysMU)-[:APPARTIENT]-> (blackList)
+ MERGE(paysGB)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysCA)-[:APPARTIENT]-> (whiteList)
+ MERGE(paysTU)-[:APPARTIENT]-> (blackList)
+//----
+
+
+//.Creation de la relation *banque/blackList*
+//----
+MERGE (banqueSG)-[:FAIT_PARTI]->(whiteList)
+MERGE (banqueBNP)-[:FAIT_PARTI]->(whiteList)
+MERGE (banqueUTB)-[:FAIT_PARTI]->(blackList)
+MERGE (banqueCA)-[:FAIT_PARTI]->(whiteList)
+//----
+
+//.Creation de la relation *personne/type de personne*
+MERGE (personneVUJ)–[:EST]->(typePersonneP)
+MERGE (personneFNE)–[:EST]->(typePersonneP)
+MERGE (personneABO)–[:EST]->(typePersonneP)
+MERGE (personneAOR)–[:EST]->(typePersonneP)
+MERGE (personneACE)–[:EST]->(typePersonneP)
+MERGE (personneBPI)–[:EST]->(typePersonneP)
+MERGE (personneFisc)–[:EST]->(typePersonneP)
+MERGE (personneRestaurateur)–[:EST]->(typePersonneM)
+MERGE (personneImprimeur)–[:EST]->(typePersonneM)
+MERGE (personneAUJ)–[:EST]->(typePersonneP)
+MERGE(personneOHU)-[:EST]->(typePersonneP)
+MERGE(personneJLA)-[:EST]->(typePersonneP)
+
+//.Creation de la relation *personne/pays*
+//----
+MERGE(personneVUJ)-[:VOYAGE]->(paysTU)
+MERGE(personneVUJ)-[:VOYAGE]->(paysMU)
+MERGE(personneJLA)-[:VOYAGE]->(paysTU)
+MERGE(personneJLA)-[:VOYAGE]->(paysUS)
+MERGE(personneVUJ)-[:VOYAGE]->(paysGB)
+MERGE(personneABO)-[:VOYAGE]->(paysCA)
+//----
+
 //.Creation de la relation *personne/adresse*
 //----
 MERGE (personneVUJ)-[:RESIDE]->(adresseParisVUJ)

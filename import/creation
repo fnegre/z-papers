@@ -1,12 +1,12 @@
 //.Creation de l'entite *black/white list*
-MERGE(whiteList:WhiteList{libelle:'WhiteList'})
-MERGE(blackList:BlackList{libelle:'BlackList'})
+MERGE(whiteList:BlackList{libelle:'WhiteList', flagBlackList:false})
+MERGE(blackList:BlackList{libelle:'BlackList', flagBlackList:true})
 //----
 
 //.Creation de l'entite *pays*
 //----
 MERGE(paysFR:Pays{libelle:'France',code:'FR'})
-MERGE(paysUS:Pays{libelle:'Etats-Unies',code:'US'})
+MERGE(paysUS:Pays{libelle:'Etats-Unis',code:'US'})
 MERGE(paysMU:Pays{libelle:'Ile Maurice',code:'MU'})
 MERGE(paysGB:Pays{libelle:'Royaume-Uni',code:'GB'})
 MERGE(paysTU:Pays{libelle:'Tunisie',code:'TU'})
@@ -40,6 +40,8 @@ MERGE(personneRestaurateur:Personne{nom:'Restaurant',prenom:'',sexe:'',compteGit
 MERGE(personneImprimeur:Personne{nom:'Imprimerie',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:'imprimeur'})
 MERGE(personneInconnu:Personne{nom:'Inconnu',prenom:'',sexe:'',compteGithub:'',compteTwitter:'',profession:''})
 MERGE(personneAUJ:Personne{nom:'Ujoodha',prenom:'Anne',sexe:'F',compteGithub:'',compteTwitter:'',profession:''})
+MERGE(personneOHU:Personne{nom:'Hubert',prenom:'Olivier',sexe:'M',compteGithub:'',compteTwitter:'',profession:'Responsable formation'})
+MERGE(personneJLA:Personne{nom:'Landure',prenom:'Julien',sexe:'M',compteGithub:'',compteTwitter:'',profession:'CTO'})
 //----
 
 //.Creation des comptes
@@ -65,6 +67,8 @@ MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.com',tel:'06-18-06
 MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com',tel:''})
 MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com',tel:''})
 MERGE(consultantACE:Consultant{email:'antoine.celier@zenika.com',tel:''})
+MERGE(consultantJLA:Consultant{email:'antoine.celier@zenika.com',tel:''})
+MERGE(consultantOHU:Consultant{email:'antoine.celier@zenika.com',tel:''})
 //----
 
 
@@ -78,9 +82,9 @@ MERGE(evtDevFest:Evt{libelle:'DevFest', pays:'France', dateDebut:'2017-11-01', d
 
 //.Creation des *adresses*
 //----
-MERGE(adresseParisVUJ:Adresse{numero:49, voie:'Bd de la Chapelle', ville:'Paris',pays:'France', dateDebut:'2011-05-01', dateFin:'2015-10-01'})
-MERGE(adresseNantesVUJ:Adresse{numero:24, voie:'rue Rene Cassin', ville:'Nantes',pays:'France', dateDebut:'2015-10-01', dateFin:'2017-01-01'})
-MERGE(adresseMaisdonVUJ:Adresse{numero:26, voie:'rue du Gardouet', ville:'Maisdon Sur Sèvres',pays:'France', dateDebut:'2016-12-24'})
+//MERGE(adresseParisVUJ:Adresse{numero:49, voie:'Bd de la Chapelle', ville:'Paris',pays:'France', dateDebut:'2011-05-01', dateFin:'2015-10-01'})
+//MERGE(adresseNantesVUJ:Adresse{numero:24, voie:'rue Rene Cassin', ville:'Nantes',pays:'France', dateDebut:'2015-10-01', dateFin:'2017-01-01'})
+//MERGE(adresseMaisdonVUJ:Adresse{numero:26, voie:'rue du Gardouet', ville:'Maisdon Sur Sèvres',pays:'France', dateDebut:'2016-12-24'})
 //----
 
 //.Creation de type d'*echanges*
@@ -117,7 +121,7 @@ MERGE(factureDivers2AOR:Facture{libelle:'Divers',destinataire:'',montant:150.00,
 //.Creation de l'entite *compta*
 //----
 MERGE(comptaNantes:Compta{ville:'Nantes'})
-MERGE(comptaParis:Compta{Ville:'Paris'})
+MERGE(comptaParis:Compta{ville:'Paris'})
 //----
 
 
