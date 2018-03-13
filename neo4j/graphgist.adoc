@@ -1,5 +1,7 @@
 # Zenika Papers
 
+// Graph Gist : https://portal.graphgist.org/
+//
 
 ## Transactions bancaires
 
@@ -8,7 +10,33 @@ Mot clef : CREATE, MERGE, RETURN
 (sans relation)
 
 
-## Transactions bancaires + relations
+[source,cypher]
+----
+MERGE(transaction1:Transaction{sens:'D',date:'2017-01-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2000.00})
+MERGE(transaction2:Transaction{sens:'D',date:'2017-02-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2000.00})
+MERGE(transaction3:Transaction{sens:'D',date:'2017-03-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2600.00})
+MERGE(transaction4:Transaction{sens:'D',date:'2017-04-01',destinataire:'vickrame',emetteur:'compta Nantes',libelle:'paie',montant:2100.00})
+
+RETURN *
+----
+
+//graph
+
+
+## Nouvelle entité : bénéficiaires
+
+[source,cypher]
+----
+MERGE(personneVUJ:Personne{nom:'Ujoodha',prenom:'Vickrame',dateNaissance:'1979-06-21',sexe:'M',compteGithub:'vickrame',compteTwitter:'@RuvaChlea',profession:'developpeur'})
+MERGE(personneFNE:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'@floriannegre',profession:'developpeur'})
+RETURN *
+----
+
+//graph
+
+
+## Relation entre les transactions et les bénéficiaires
+
 
 TODO Cypher Code présenter la notion de relations
 mot clef : -[]->
