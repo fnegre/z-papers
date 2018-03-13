@@ -407,3 +407,13 @@ MERGE (transaction18)-[:EST_LOCALISE]->(positionZenikaNantes)
 MERGE (transaction19)-[:EST_LOCALISE]->(positionZenikaNantes)
 MERGE (transaction20)-[:EST_LOCALISE]->(positionZenikaNantes)
 //----
+
+//.Creation de l'entité *photo*
+//----
+MERGE (photoJLA:PHOTO{libelle:'photo de vacance', date:'2017-03-12'})
+//----
+
+//.Creation de la relation *photo/position*
+//----
+MERGE(photoJLA)-[:EST_LOCALISE]->(positionMA)
+//----
