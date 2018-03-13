@@ -112,11 +112,11 @@ MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
 [source,cypher]
 ----
 shortestPath((n1:Person)-[*..6]-(n2:Person))
-Va permettre de trouver le coupable en trouvant que la personne était près de la banque le jour de
-l'ouverture du compte
 ----
 
 
+### Aller plus loin
+https://neo4j-contrib.github.io/neo4j-apoc-procedures/
 
 
 
