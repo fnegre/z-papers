@@ -111,7 +111,10 @@ RETURN t, b
 
 Todo cypher code import via csv, voir : https://neo4j.com/graphgist/importing-csv-files-with-cypher
 Montrer l'import en batch de X élements USING PERIODIC COMMIT 500
-
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/fnegre/z-papers/master/neo4j/csv/persons.csv" AS csvLine
+MERGE (p:Personne {name: csvLine.personne})
+MERGE (t:Transaction {libelle: csvLine.transactionLibelle, montant: csvLine.transactionMontant, date: csvLine.trasactionDate})
+MERGE (t)-[:VERS]->(p)
 ## Ajout d'index
 
 TODO Cypher code, création d'index
