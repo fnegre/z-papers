@@ -90,7 +90,7 @@ MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.com',tel:'',dateEmbauch
 // .Creation de l'entite *evenments*
 // ----
 MERGE(evtDevoxMaroc:Evt{libelle:'DEVOXX MAROC', pays:'Maroc', dateDebut:'2018-09-01', dateFin:'2018-09-04',raison:'organiser'})
-MERGE(evtVoxxDays:Evt{libelle:'VoxxDays', pays:'Singapore', dateDebut:'2018-10-01', dateFin:'2018-10-04',raison:'participer'})
+MERGE(evtVoxxedDays:Evt{libelle:'VoxxedDays', pays:'Singapore', dateDebut:'2018-10-01', dateFin:'2018-10-04',raison:'participer'})
 MERGE(evtGoogleIO:Evt{libelle:'GoogleIO', pays:'Etat-Unis', dateDebut:'2018-05-01', dateFin:'2018-05-04',raison:'assister'})
 MERGE(evtLearningExedition:Evt{libelle:'Learning Exedition', pays:'Etat-Unis', dateDebut:'2017-06-24', dateFin:'2017-06-27',raison:'assister'})
 MERGE(evtDevFest:Evt{libelle:'DevFest', pays:'France', dateDebut:'2017-11-01', dateFin:'2017-11-04',raison:'assister'})

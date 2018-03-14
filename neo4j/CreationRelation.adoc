@@ -14,6 +14,7 @@ MERGE (banqueSG)-[:FAIT_PARTI]->(whiteList)
 MERGE (banqueBNP)-[:FAIT_PARTI]->(whiteList)
 MERGE (banqueUTB)-[:FAIT_PARTI]->(blackList)
 MERGE (banqueCA)-[:FAIT_PARTI]->(whiteList)
+MERGE (banquePA)-[:FAIT_PARTI]->(blackList)
 //----
 
 //.Creation de la relation *personne/type de personne*
