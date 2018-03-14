@@ -107,7 +107,7 @@ MATCH path=(p:Personne)-[*..2]-(evt:Evt)
 WHERE evt.pays <> 'France'
 and apoc.date.parse(c.dateOuverture,'s','yyyy-MM-dd') >= apoc.date.parse(evt.dateDebut,'s','yyyy-MM-dd')
 and apoc.date.parse(c.dateOuverture,'s','yyyy-MM-dd') <= apoc.date.parse(evt.dateFin,'s','yyyy-MM-dd')
-RETURN nodes(path), nodes (pathT)
+RETURN nodes(path)//, nodes (pathT)
 // --> Julien
 
 
