@@ -1,3 +1,5 @@
 # Zenika Papers
 
-include::graphgist.adoc[]
+Reste à faire :
+
+- [ ] Slide : Son Téléphone
