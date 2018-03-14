@@ -6,6 +6,7 @@
  MERGE(paysGB)-[:APPARTIENT]-> (whiteList)
  MERGE(paysCA)-[:APPARTIENT]-> (whiteList)
  MERGE(paysTU)-[:APPARTIENT]-> (blackList)
+ MERGE(paysPA)-[:APPARTIENT]-> (blackList)
 //----
 
 //.Creation de la relation *banque/blackList*
@@ -44,7 +45,7 @@ MERGE(personneVUJ)-[:VOYAGE]->(paysTU)
 MERGE(personneVUJ)-[:VOYAGE]->(paysMU)
 MERGE(personneJLA)-[:VOYAGE]->(paysTU)
 MERGE(personneJLA)-[:VOYAGE]->(paysUS)
-MERGE(personneJLA)-[:VOYAGE]->(paysPA)
+//MERGE(personneJLA)-[:VOYAGE]->(paysPA)
 MERGE(personneVUJ)-[:VOYAGE]->(paysGB)
 MERGE(personneABO)-[:VOYAGE]->(paysCA)
 //----
@@ -61,6 +62,9 @@ MERGE(compteAgence)-[:RESIDE]->(paysFR)
 MERGE(compteAgenceCE)-[:RESIDE]->(paysFR)
 MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
 MERGE(compteInconnu)-[:RESIDE]->(paysPA)
+MERGE(compteInconnu2)-[:RESIDE]->(paysFR)
+MERGE(compteInconnu3)-[:RESIDE]->(paysFR)
+MERGE(compteInconnu4)-[:RESIDE]->(paysFR)
 //MERGE(compteFNE)-[:RESIDE]->(paysFR)
 //MERGE(compteVUJ)-[:RESIDE]->(paysFR)
 //MERGE(compteABO)-[:RESIDE]->(paysFR)
@@ -73,6 +77,9 @@ MERGE(compteAgence)-[:OUVERT_CHEZ]->(banqueSG)
 MERGE(compteAgenceCE)-[:OUVERT_CHEZ]->(banqueBNP)
 MERGE(compteAgenceParis)-[:OUVERT_CHEZ]->(banqueSG)
 MERGE(compteInconnu)-[:OUVERT_CHEZ]->(banquePA)
+MERGE(compteInconnu2)-[:OUVERT_CHEZ]->(banqueSG)
+MERGE(compteInconnu3)-[:OUVERT_CHEZ]->(banqueSG)
+MERGE(compteInconnu4)-[:OUVERT_CHEZ]->(banqueBNP)
 
 
 // Creation de la relation 'banque/position'
@@ -110,12 +117,13 @@ MERGE(personneLDU)-[:EST]->(consultantLDU)
 //.Creation de la relation *consultant/agence*
 //----
 MERGE(consultantVUJ)-[:TRAVAILLE]->(agenceNantes)
-MERGE(consultantFNE)-[:TRAVAILLE]->(agenceNantes)
-MERGE(consultantAOR)-[:TRAVAILLE]->(agenceNantes)
+MERGE(consultantFNE)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceNantes)
+MERGE(consultantAOR)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceNantes)
 MERGE(consultantJLA)-[:TRAVAILLE]->(agenceNantes)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceParis)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceParis)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-26"}]->(agenceParis)
+MERGE(consultantOHU)-[:TRAVAILLE]->(agenceParis)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceNantes)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceNantes)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-26"}]->(agenceNantes)
 MERGE(consultantACE)-[:TRAVAILLE]->(agenceNantes)
 //----
 
@@ -130,10 +138,18 @@ MERGE(consultantACE)-[:PARTICIPE]->(evtDevFest)
 MERGE(consultantACE)-[:PARTICIPE]->(evtDevoxMaroc)
 MERGE(consultantJLA)-[:PARTICIPE]->(evtGoogleIO)
 MERGE(consultantOHU)-[:PARTICIPE]->(evtVoxxDays)
-MERGE(consultantOHU)-[:PARTICIPE]->(pocker)
-MERGE(consultantAOR)-[:PARTICIPE]->(pocker)
-MERGE(consultantJLA)-[:PARTICIPE]->(pocker)
-MERGE(consultantABO)-[:PARTICIPE]->(pocker)
+MERGE(consultantJLA)-[:PARTICIPE]->(evtLearningExedition)
+MERGE(consultantOHU)-[:PARTICIPE]->(poker1)
+MERGE(consultantAOR)-[:PARTICIPE]->(poker1)
+MERGE(consultantJLA)-[:PARTICIPE]->(poker1)
+MERGE(consultantABO)-[:PARTICIPE]->(poker1)
+MERGE(consultantOHU)-[:PARTICIPE]->(poker2)
+MERGE(consultantAOR)-[:PARTICIPE]->(poker2)
+MERGE(consultantJLA)-[:PARTICIPE]->(poker2)
+MERGE(consultantOHU)-[:PARTICIPE]->(poker3)
+MERGE(consultantFNE)-[:PARTICIPE]->(poker3)
+MERGE(consultantJLA)-[:PARTICIPE]->(poker3)
+MERGE(consultantABO)-[:PARTICIPE]->(poker3)
 //----
 
 //.Creation de la relation *personne/agence*
@@ -217,19 +233,19 @@ MERGE (transaction20)-[:AFFECTE]->(compteAgenceCE)
 
 //.Creation de la relation *transaction vers Compte destinataire*
 //----
-MERGE (transaction5)-[:VERS]->(compteAgence)
-MERGE (transaction5)-[:VERS]->(compteAgenceParis)
-MERGE (transaction6)-[:VERS]->(compteAgence)
-MERGE (transaction7)-[:VERS]->(compteAgenceCE)
-MERGE (transaction8)-[:VERS]->(compteAgenceCE)
-MERGE (transaction9)-[:VERS]->(compteAgenceCE)
-MERGE (transaction10)-[:VERS]->(compteAgenceCE)
-MERGE (transaction11)-[:VERS]->(compteAgenceCE)
-MERGE (transaction12)-[:VERS]->(compteAgenceCE)
-MERGE (transaction13)-[:VERS]->(compteAgenceCE)
-MERGE (transaction14)-[:VERS]->(compteAgenceCE)
-MERGE (transaction15)-[:VERS]->(compteAgenceCE)
-MERGE (transaction16)-[:VERS]->(compteAgenceCE)
+MERGE (transaction5)-[:VERS]->(compteInconnu2)
+MERGE (transaction5)-[:VERS]->(compteInconnu3)
+MERGE (transaction6)-[:VERS]->(compteInconnu2)
+MERGE (transaction7)-[:VERS]->(compteInconnu3)
+MERGE (transaction8)-[:VERS]->(compteInconnu4)
+MERGE (transaction9)-[:VERS]->(compteInconnu3)
+MERGE (transaction10)-[:VERS]->(compteInconnu4)
+MERGE (transaction11)-[:VERS]->(compteInconnu2)
+MERGE (transaction12)-[:VERS]->(compteInconnu3)
+MERGE (transaction13)-[:VERS]->(compteInconnu2)
+MERGE (transaction14)-[:VERS]->(compteInconnu2)
+MERGE (transaction15)-[:VERS]->(compteInconnu3)
+MERGE (transaction16)-[:VERS]->(compteInconnu4)
 MERGE (transaction17)-[:VERS]->(compteInconnu)
 MERGE (transaction18)-[:VERS]->(compteInconnu)
 MERGE (transaction19)-[:VERS]->(compteInconnu)
@@ -256,23 +272,3 @@ MERGE (transaction19)-[:EST_LOCALISE]->(positionZenikaNantes)
 MERGE (transaction20)-[:EST_LOCALISE]->(positionZenikaNantes)
 //----
 
-
-//.Creation de la relation *personne/photo*
-//----
-MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA1)
-MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA2)
-MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA3)
-MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA4)
-MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU1)
-MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU2)
-//----
-
-//.Creation de la relation *photo/position*
-//----
-MERGE(photoJLA1)-[:EST_LOCALISE]->(positionMA)
-MERGE(photoJLA2)-[:EST_LOCALISE]->(positionPhotoPa)
-MERGE(photoJLA3)-[:EST_LOCALISE]->(positionZenikaNantes)
-MERGE(photoJLA4)-[:EST_LOCALISE]->(positionZenikaNantes)
-MERGE(photoOHU1)-[:EST_LOCALISE]->(positionZenikaNantes)
-MERGE(photoOHU2)-[:EST_LOCALISE]->(positionZenikaNantes)
-//----

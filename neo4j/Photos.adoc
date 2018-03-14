@@ -1,0 +1,42 @@
+//10 - Ajout des photos
+
+// .Creation de l'entité *photo*
+// ----
+MERGE (photoJLA1:Photo{libelle:'photo Julien 1', date:'2017-06-27'})
+MERGE (photoJLA2:Photo{libelle:'photo Julien 2', date:'2017-06-27'})
+MERGE (photoJLA3:Photo{libelle:'photo Julien 3', date:'2017-07-30'})
+MERGE (photoJLA4:Photo{libelle:'photo Julien 4', date:'2017-09-15'})
+MERGE (photoOHU1:Photo{libelle:'photo Olivier 1', date:'2017-05-12'})
+MERGE (photoOHU2:Photo{libelle:'photo Olivier 2', date:'2017-09-27'})
+// ----
+
+
+MERGE(personneOHU:Personne{nom:'Hubert',prenom:'Olivier',sexe:'M',compteGithub:'',compteTwitter:'',profession:'Responsable formation'})
+MERGE(personneJLA:Personne{nom:'Landure',prenom:'Julien',sexe:'M',compteGithub:'',compteTwitter:'',profession:'CTO'})
+
+
+//.Creation de la relation *personne/photo*
+//----
+
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA1)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA2)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA3)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA4)
+MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU1)
+MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU2)
+//----
+
+MERGE(positionZenikaNantes:Position{latitude:47.213763 ,longitude:-1.5562514000000647, lieu:'5 allée Brancas Nantes', site:'Zenika'})
+MERGE(positionMA:Position{latitude:37.3860517 ,longitude:-122.0838511, lieu:'Mountain View', site:'Google I/O'})
+MERGE(positionPhotoPa:Position{latitude:8.537581 ,longitude:-80.781127, lieu:'rue Panama', site:'rue Panama'})
+
+
+//.Creation de la relation *photo/position*
+//----
+MERGE(photoJLA1)-[:EST_LOCALISE]->(positionMA)
+MERGE(photoJLA2)-[:EST_LOCALISE]->(positionPhotoPa)
+MERGE(photoJLA3)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoJLA4)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoOHU1)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoOHU2)-[:EST_LOCALISE]->(positionZenikaNantes)
+//----

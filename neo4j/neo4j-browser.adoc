@@ -61,7 +61,7 @@ RETURN nodes(path)
 TODO : à faire Extraction des coordonnées GPS
 [source,cypher]
 ```
-// 06 - Position Requetes frauduleuses
+// 06 - Localisation Position Requetes frauduleuses
 MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
 RETURN nodes(path)
 ```
@@ -85,33 +85,29 @@ RETURN p.prenom, p.nom, c.dateEmbauche
 
 ## Requête permettant de filtrer les consultants à l'agence pendant transactions frauduleuses
 
-TODO
 [source,cypher]
 ```
-// 08 - A tester - Consultants à l'agence pendant les transactions frauduleuses
-MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
-WITH p
-MATCH (pc:Position)-[*..3]--(p:Personne)
-WHERE pc.site = p.site
-// Todo gestion de la temporalite
-RETURN p.prenom, p.nom, p.site, pc.site
+// 08 - Consultants à l'agence pendant les transactions frauduleuses
+MATCH (t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
+WITH t
+MATCH path = (pers:Personne)--(:Consultant)-[work:TRAVAILLE{date:t.date}]->(a:Agence{libelle:'Zenika Nantes'})
+return nodes(path)
 ```
 // --> Olivier
 
 ## Requête permettant de trouver les consultants à l'étranger à l'ouverture du compte
 
-TODO
+// TODO tester requête
 [source,cypher]
 ```
 // 09 - Consultants à l'étranger lors de l'ouverture du compte
-// TODO tester requête
-MATCH (c:Compte)-[*..4]-(BlackList{flagBlackList:true})
-WITH c
-MATCH (p:Personne)--(evt:Evt)--(pays:Pays)
-WHERE NOT pays.code='FR' and c.dateOuverture > evt.dateDebut and c.dateOuverture < evt.dateFin
-RETURN p.prenom, p.nom, evt.libelle, evt.dateDebut, evt.dateFin, c.dateOuverture, pays.libelle
-```
-
+MATCH pathT = (Transaction)-[:VERS]-(c:Compte)-[*..4]-(BlackList{flagBlackList:true})
+WITH c, pathT
+MATCH path=(p:Personne)-[*..2]-(evt:Evt)
+WHERE evt.pays <> 'France'
+and apoc.date.parse(c.dateOuverture,'s','yyyy-MM-dd') >= apoc.date.parse(evt.dateDebut,'s','yyyy-MM-dd')
+and apoc.date.parse(c.dateOuverture,'s','yyyy-MM-dd') <= apoc.date.parse(evt.dateFin,'s','yyyy-MM-dd')
+RETURN nodes(path), nodes (pathT)
 // --> Julien
 
 
@@ -130,7 +126,7 @@ TODO
 ----
 //11 - Distance entre 2 positions (en km)
 Match(pos1:Position {site: 'Zenika'})
-Match (pos2:Position {site: 'Château'})
+Match (pos2:Position {site: 'Zenika Paris'})
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2
 RETURN distance(p1,p2)/1000 AS dist
 ----
@@ -138,11 +134,10 @@ RETURN distance(p1,p2)/1000 AS dist
 ### Relation proche entre la banque et les autres localisations
 
 .Créer une relation entre chaque lieu contenant leur distance
-// TODO Remplacer Zenika par la position Banque offshore
 [source,cypher]
 ----
 //12 - WIP Creation d'une relation "PROCHE" < 10km
-Match(pos1:Position{site:"Zenika"}), (pos2:Position)
+Match(pos1:Position{site:"banque Panama"}), (pos2:Position)
 WHERE pos1.site <> pos2.site
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2, pos1, pos2
 WITH distance(p1,p2)/1000 as distance, pos1, pos2
@@ -158,7 +153,7 @@ MERGE (pos1)-[:PROCHE{valeur:distance}]-(pos2)
 [source,cypher]
 ----
 //13 WIP Qui est lié à la banque
-Match path = (p:Personne)-[*..6]-(l:Position{site:"Zenika"})
+Match path = (p:Personne)-[*..6]-(l:Position{site:"banque Panama"})
 return  nodes(path)
 ORDER BY LENGTH(path) limit 1
 ----
