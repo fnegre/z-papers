@@ -74,16 +74,16 @@ MERGE(compteOffInconnu:Compte{libelle:'Inconnu',dateOuverture:'2017-05-27'})
 // .Creation de l entite *consultant*
 // ----
 MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
-MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com,tel:'',dateEmbauche:'2017-09-10'})
-MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantACE:Consultant{email:'antoine// .Celier@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.com,tel:'',dateEmbauche:'2017-11-10'})
-MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.com,tel:'',dateEmbauche:'2017-08-10'})
-MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.com,tel:'',dateEmbauche:'2018-01-01'})
-MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.com,tel:'',dateEmbauche:'2018-01-10'})
+MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com',tel:'',dateEmbauche:'2017-09-10'})
+MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantACE:Consultant{email:'antoine.Celier@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.com',tel:'',dateEmbauche:'2017-11-10'})
+MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.com',tel:'',dateEmbauche:'2017-08-10'})
+MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.com',tel:'',dateEmbauche:'2018-01-01'})
+MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.com',tel:'',dateEmbauche:'2018-01-10'})
 // ----
 
 
@@ -95,8 +95,8 @@ MERGE(evtGoogleIO:Evt{libelle:'GoogleIO', pays:'Etat-Unis', dateDebut:'2018-05-0
 MERGE(evtLearningExedition:Evt{libelle:'Learning Exedition', pays:'Etat-Unis', dateDebut:'2017-06-24', dateFin:'2017-06-27',raison:'assister'})
 MERGE(evtDevFest:Evt{libelle:'DevFest', pays:'France', dateDebut:'2017-11-01', dateFin:'2017-11-04',raison:'assister'})
 MERGE(pocker:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-03-24', dateFin:'2017-03-26',raison:'jouer'})
-MERGE(pocker:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-05-24', dateFin:'2017-05-26',raison:'jouer'})
-MERGE(pocker:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-06-24', dateFin:'2017-06-26',raison:'jouer'})
+MERGE(pocker1:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-05-24', dateFin:'2017-05-26',raison:'jouer'})
+MERGE(pocker2:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-06-24', dateFin:'2017-06-26',raison:'jouer'})
 // ----
 
 
