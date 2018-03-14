@@ -106,7 +106,7 @@ MERGE(TelOHU2:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-
 // ----
 MERGE(positionZenikaNantes:Position{latitude:47.213763 ,longitude:-1.5562514000000647, lieu:'5 allée Brancas Nantes', site:'Zenika'})
 MERGE(positionMA:Position{latitude:37.3860517 ,longitude:-122.0838511, lieu:'Mountain View', site:'Google I/O'})
-MERGE(positionNantes:Position{latitude:447.218371 ,longitude:-1.553621000000021, lieu:'Nantes', site:'Château'})
+MERGE(positionNantes:Position{latitude:47.218371 ,longitude:-1.553621000000021, lieu:'Nantes', site:'Château'})
 // ----
 
 

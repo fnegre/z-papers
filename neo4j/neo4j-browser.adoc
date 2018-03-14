@@ -16,7 +16,7 @@ TODO : Date ouverture de compte
 ```
 // 01 - extraction modele
 MATCH (a)-[r]->(b) WHERE labels(a) <> [] AND labels(b) <> []
-RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That LIMIT 100
+RETURN DISTINCT head(labels(a)) AS This, type(r) as To, head(labels(b)) AS That order by This, To, That LIMIT 100
 ```
 
 ## Graphe contenant jusqu'à la partie blacklist de pays
@@ -28,23 +28,30 @@ match(n) return n
 ----
 
 
-## Liste des transactions
+## Liste des transactions et de leurs relations +1
 
 [source,cypher]
 ----
-// 03 - Transactions
+// 03 - Transactions + relation directe
 match (n:Transaction)--(o) return n, o
 ----
 
 ## Transactions vers des comptes étrangers (à partir de l'iban)
 
+[source,cypher]
+----
+// 04 - Transactions vers des comptes étrangers
+match (t:Transaction)--(c:Compte)
+where NOT t.ibanDestinataire STARTS WITH 'FR'
+return t,c
+----
 
 
 ## Requête permettant de trouver les requêtes frauduleuses (pays de la banque sur blacklist)
 
 [source,cypher]
 ```
-// Requetes frauduleuses
+// 05 - Requetes frauduleuses
 MATCH path =(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
 RETURN nodes(path)
 ```
@@ -54,18 +61,25 @@ RETURN nodes(path)
 TODO : à faire Extraction des coordonnées GPS
 [source,cypher]
 ```
+// 06 - Position Requetes frauduleuses
+MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
+RETURN nodes(path)
 ```
 
 
 ## Requête permettant de filtrer les consultants arrivés avant les transactions frauduleuses
 
-// documentation conversion date : https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
+// documentation conversion date :
+// https://neo4j-contrib.github.io/neo4j-apoc-procedures/#_date_and_time_conversions
 
 [source,cypher]
 ```
-Match (c:Consultant)--(p:Personne)
+// 07 - Consultants deja embauchés
+MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
+WITH t
+MATCH (c:Consultant)--(p:Personne)
 WHERE apoc.date.parse(c.dateEmbauche,'s','yyyy-MM-dd') < apoc.date.parse('2017-06-01','s','yyyy-MM-dd')
-RETURN c,p
+RETURN p.prenom, p.nom, c.dateEmbauche
 ```
 
 
@@ -74,7 +88,13 @@ RETURN c,p
 TODO
 [source,cypher]
 ```
-
+// 08 - A tester - Consultants à l'agence pendant les transactions frauduleuses
+MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
+WITH p
+MATCH (pc:Position)-[*..3]--(p:Personne)
+WHERE pc.site = p.site
+// Todo gestion de la temporalite
+RETURN p.prenom, p.nom, p.site, pc.site
 ```
 // --> Olivier
 
@@ -83,7 +103,13 @@ TODO
 TODO
 [source,cypher]
 ```
-
+// 09 - Consultants à l'étranger lors de l'ouverture du compte
+// TODO tester requête
+MATCH (c:Compte)-[*..4]-(BlackList{flagBlackList:true})
+WITH c
+MATCH (p:Personne)--(evt:Evt)--(pays:Pays)
+WHERE NOT pays.code='FR' and c.dateOuverture > evt.dateDebut and c.dateOuverture < evt.dateFin
+RETURN p.prenom, p.nom, evt.libelle, evt.dateDebut, evt.dateFin, c.dateOuverture, pays.libelle
 ```
 
 // --> Julien
@@ -94,41 +120,45 @@ TODO
 TODO
 [source,cypher]
 ```
-
+// 10 - Ajout des photos et de leurs metadatas
 ```
 
-### Distance entre la banque et les localisations des photos
+### Distance entre deux localisation
 
 .Distances entre deux points
 [source,cypher]
 ----
-Match(pos1:Position {libelle: 'Quick'})
-Match (pos2:Position {libelle: 'CBP'})
+//11 - Distance entre 2 positions (en km)
+Match(pos1:Position {site: 'Zenika'})
+Match (pos2:Position {site: 'Château'})
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2
-RETURN distance(p1,p2) AS dist
+RETURN distance(p1,p2)/1000 AS dist
 ----
+
+### Relation proche entre la banque et les autres localisations
 
 .Créer une relation entre chaque lieu contenant leur distance
+// TODO Remplacer Zenika par la position Banque offshore
 [source,cypher]
 ----
-Match(pos1:Position), (pos2:Position)
-WHERE pos1.libelle <> pos2.libelle
+//12 - WIP Creation d'une relation "PROCHE" < 10km
+Match(pos1:Position{site:"Zenika"}), (pos2:Position)
+WHERE pos1.site <> pos2.site
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2, pos1, pos2
-MERGE (pos1)-[:DISTANCE{valeur:distance(p1,p2)}]-(pos2)
+WITH distance(p1,p2)/1000 as distance, pos1, pos2
+WHERE distance < 10
+MERGE (pos1)-[:PROCHE{valeur:distance}]-(pos2)
 ----
 
-.Créer une relation PROCHE entre chaque lieu dont la distance est inférieure à 10 km
-[source,cypher]
-----
 
-----
 
 ### Requête : trouver qui est lié à la banque
 
-TODO en cours
+// TODO Remplacer Zenika par la position Banque offshore
 [source,cypher]
 ----
-Match path = (p:Entite)-[*..4]-[PROCHE]-(l:Position{libelle:"Banque Offshore"})
+//13 WIP Qui est lié à la banque
+Match path = (p:Personne)-[*..6]-(l:Position{site:"Zenika"})
 return  nodes(path)
 ORDER BY LENGTH(path) limit 1
 ----
