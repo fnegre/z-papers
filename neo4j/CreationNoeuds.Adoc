@@ -69,12 +69,9 @@ MERGE(compteAgence:Compte{libelle:'Compte de Zenika Nantes',dateOuverture:'2012-
 MERGE(compteAgenceCE:Compte{libelle:'Compte CE de Zenika Nantes',dateOuverture:'2012-01-01'})
 MERGE(compteAgenceParis:Compte{libelle:'Compte de Zenika Paris',dateOuverture:'2002-01-01'})
 MERGE(compteInconnu:Compte{libelle:'Inconnu',dateOuverture:'2017-05-27'})
-<<<<<<< HEAD
-=======
 MERGE(compteInconnu2:Compte{libelle:'Inconnu',dateOuverture:'2010-03-22'})
 MERGE(compteInconnu3:Compte{libelle:'Inconnu',dateOuverture:'2009-07-11'})
 MERGE(compteInconnu4:Compte{libelle:'Inconnu',dateOuverture:'2001-01-17'})
->>>>>>> Finalisation
 // ----
 
 // .Creation de l entite *consultant*
