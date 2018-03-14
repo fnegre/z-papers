@@ -43,6 +43,7 @@ MERGE(personneVUJ)-[:VOYAGE]->(paysTU)
 MERGE(personneVUJ)-[:VOYAGE]->(paysMU)
 MERGE(personneJLA)-[:VOYAGE]->(paysTU)
 MERGE(personneJLA)-[:VOYAGE]->(paysUS)
+MERGE(personneJLA)-[:VOYAGE]->(paysPA)
 MERGE(personneVUJ)-[:VOYAGE]->(paysGB)
 MERGE(personneABO)-[:VOYAGE]->(paysCA)
 //----
@@ -66,7 +67,7 @@ MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
 //----
 
 // Creation de la relation 'compte/banque'
-MERGE(compteOffShore)-[:OUVERT_CHEZ]->(banqueUTB)
+MERGE(compteOffShore)-[:OUVERT_CHEZ]->(banquePA)
 
 //.Creation de la relation *compte/personne*
 //----
@@ -213,10 +214,10 @@ MERGE (transaction13)-[:VERS]->(compteAgenceCE)
 MERGE (transaction14)-[:VERS]->(compteAgenceCE)
 MERGE (transaction15)-[:VERS]->(compteAgenceCE)
 MERGE (transaction16)-[:VERS]->(compteAgenceCE)
-MERGE (transaction17)-[:VERS]->(compteOffShore)
-MERGE (transaction18)-[:VERS]->(compteOffShore)
-MERGE (transaction19)-[:VERS]->(compteOffShore)
-MERGE (transaction20)-[:VERS]->(compteOffShore)
+MERGE (transaction17)-[:VERS]->(compteInconnu)
+MERGE (transaction18)-[:VERS]->(compteInconnu)
+MERGE (transaction19)-[:VERS]->(compteInconnu)
+MERGE (transaction20)-[:VERS]->(compteInconnu)
 //----
 
 //.Creation relation *transactions/position*
