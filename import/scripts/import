@@ -1,5 +1,5 @@
 //transaction
-LOAD CSV WITH HEADERS FROM https://raw.githubusercontent.com/fnegre/z-papers/master/import/jeuDonnees/csv/transaction.csv AS row
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/fnegre/z-papers/master/import/jeuDonnees/csv/transaction.csv" AS row
 MERGE (transactionCSV:Transaction {id:row.id})
 ON CREATE SET transactionCSV.sens = row.sens,
               transactionCSV.date = row.date,
