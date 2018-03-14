@@ -79,7 +79,7 @@ MATCH path =(p:Position)--(t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
 WITH t
 MATCH (c:Consultant)--(p:Personne)
 WHERE apoc.date.parse(c.dateEmbauche,'s','yyyy-MM-dd') < apoc.date.parse('2017-06-01','s','yyyy-MM-dd')
-RETURN p.prenom, p.nom, c.dateEmbauche
+RETURN DISTINCT id(p), p.prenom, p.nom, c.dateEmbauche
 ```
 
 
