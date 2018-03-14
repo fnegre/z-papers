@@ -1,35 +1,35 @@
-.Creation de l'entite *black/white list*
-----
+// .Creation de l'entite *black/white list*
+// ----
 MERGE(whiteList:BlackList{libelle:'WhiteList', flagBlackList:false})
 MERGE(blackList:BlackList{libelle:'BlackList', flagBlackList:true})
-----
+// // ----
 
-.Creation de l'entite *pays*
-----
+// .Creation de l'entite *pays*
+// ----
 MERGE(paysFR:Pays{libelle:'France',code:'FR'})
 MERGE(paysUS:Pays{libelle:'Etats-Unis',code:'US'})
 MERGE(paysMU:Pays{libelle:'Ile Maurice',code:'MU'})
 MERGE(paysGB:Pays{libelle:'Royaume-Uni',code:'GB'})
 MERGE(paysTU:Pays{libelle:'Tunisie',code:'TU'})
 MERGE(paysCA:Pays{libelle:'Canada',code:'CA'})
-----
+// ----
 
-.Creation de l'entite *banque*
-----
+// .Creation de l'entite *banque*
+// ----
 MERGE (banqueSG:Banque{libelle:'Société Générale'})
 MERGE (banqueBNP:Banque{libelle:'BNP Paribas'})
 MERGE (banqueUTB:Banque{libelle:'Union Tunisienne de Banque'})
 MERGE (banqueCA:Banque{libelle:'Banque du Quebec'})
-----
+// ----
 
-.Creation du *type de personne*
-----
+// .Creation du *type de personne*
+// ----
 MERGE(typePersonneP:TypePersonne{code:'P',libelle:'physique'})
 MERGE(typePersonneM:TypePersonne{code:'M',libelle:'morale'})
-----
+// ----
 
-.Creation des *personne*
-----
+// .Creation des *personne*
+// ----
 MERGE(personneVUJ:Personne{nom:'Ujoodha',prenom:'Vickrame',dateNaissance:'1979-06-21',sexe:'M',compteGithub:'vickrame',compteTwitter:'@RuvaChlea',profession:'developpeur'})
 MERGE(personneFNE:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'@floriannegre',profession:'developpeur'})
 MERGE(personneABO:Personne{nom:'Bonneau',prenom:'Antoine',sexe:'M',compteGithub:'',compteTwitter:'@goodWater',profession:'directeur'})
@@ -47,56 +47,51 @@ MERGE(personneDMI:Personne{nom:'Millet',prenom:'Delphine',sexe:'F',compteGithub:
 MERGE(personneFAB:Personne{nom:'Abgrall',prenom:'Franck',sexe:'M',compteGithub:'',compteTwitter:'',profession:'développeur'})
 MERGE(personneBPET:Personne{nom:'Petetot',prenom:'Benjamin',sexe:'M',compteGithub:'',compteTwitter:'',profession:'développeur'})
 MERGE(personneLDUP:Personne{nom:'Dupuy',prenom:'Lucas',sexe:'M',compteGithub:'',compteTwitter:'',profession:'developpeur'})
-----
+// ----
 
-.Creation de l'entite *agences*
-----
+// .Creation de l'entite *agences*
+// ----
 MERGE(agenceNantes:Agence{libelle:'Zenika Nantes'})
 MERGE(agenceParis:Agence{libelle:'Zenika Paris'})
-----
+// ----
 
 
-.Creation de l'entite *comptes*
-----
+// .Creation de l'entite *comptes*
+// ----
 MERGE(compteAgence:Compte{libelle:'Compte de Zenika Nantes',dateOuverture:'2012-01-01'})
 MERGE(compteAgenceCE:Compte{libelle:'Compte CE de Zenika Nantes',dateOuverture:'2012-01-01'})
 MERGE(compteAgenceParis:Compte{libelle:'Compte de Zenika Paris',dateOuverture:'2002-01-01'})
-MERGE(compteFNE:Compte{libelle:'Compte de Florian',dateOuverture:'1998-01-01'})
-MERGE(compteVUJ:Compte{libelle:'Compte de Vickrame',dateOuverture:'1996-01-01'})
-MERGE(compteABO:Compte{libelle:'Compte Antoine',dateOuverture:'1996-11-01'})
-MERGE(compteACE:Compte{libelle:'Compte Antoine Celier',dateOuverture:'1999-11-01'})
-MERGE(compteAOR:Compte{libelle:'Compte d Amelin',dateOuverture:'2003-05-01'})
-MERGE(compteOffShore:Compte{libelle:'OffShore',dateOuverture:'2017-03-01'})
-----
+MERGE(compteOffShore:Compte{libelle:'OffShore',dateOuverture:'2017-05-27'})
+// ----
 
-.Creation de l entite *consultant*
-----
-MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.Com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
-MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.Com',tel:'',dateEmbauche:'2017-09-10'})
-MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantACE:Consultant{email:'antoine.Celier@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.Com',tel:'',dateEmbauche:'2017-11-10'})
-MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.Com',tel:'',dateEmbauche:'2017-08-10'})
-MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.Com',tel:'',dateEmbauche:'2018-01-01'})
-MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.Com',tel:'',dateEmbauche:'2018-01-10'})
-----
+// .Creation de l entite *consultant*
+// ----
+MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika// .Com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
+MERGE(consultantFNE:Consultant{email:'florian.negre@zenika// .Com',tel:'',dateEmbauche:'2017-09-10'})
+MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantACE:Consultant{email:'antoine// .Celier@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantJLA:Consultant{email:'julien.landure@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika// .Com',tel:'',dateEmbauche:'2017-11-10'})
+MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika// .Com',tel:'',dateEmbauche:'2017-08-10'})
+MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika// .Com',tel:'',dateEmbauche:'2018-01-01'})
+MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika// .Com',tel:'',dateEmbauche:'2018-01-10'})
+// ----
 
 
-.Creation de l'entite *evenments*
-----
+// .Creation de l'entite *evenments*
+// ----
 MERGE(evtDevoxMaroc:Evt{libelle:'DEVOXX MAROC', pays:'Maroc', dateDebut:'2018-09-01', dateFin:'2018-09-04',raison:'organiser'})
 MERGE(evtVoxxDays:Evt{libelle:'VoxxDays', pays:'Singapore', dateDebut:'2018-10-01', dateFin:'2018-10-04',raison:'participer'})
 MERGE(evtGoogleIO:Evt{libelle:'GoogleIO', pays:'Etat-Unis', dateDebut:'2018-05-01', dateFin:'2018-05-04',raison:'assister'})
 MERGE(evtDevFest:Evt{libelle:'DevFest', pays:'France', dateDebut:'2017-11-01', dateFin:'2017-11-04',raison:'assister'})
 MERGE(pocker:Evt{libelle:'Soirée Pocker', pays:'France', dateDebut:'2017-03-24', dateFin:'2017-03-26',raison:'jouer'})
-----
+// ----
 
 
-.Creation de l'entite *echanges*
-----
+// .Creation de l'entite *echanges*
+// ----
 MERGE(TelJLA:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-01',contenu:'',objet:''})
 MERGE(TelJLA1:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-01',contenu:'',objet:''})
 MERGE(TelJLA2:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-01',contenu:'',objet:''})
@@ -105,48 +100,48 @@ MERGE(TelJLA4:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-
 MERGE(TelJLA5:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-02',contenu:'',objet:''})
 MERGE(TelOHU1:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-01',contenu:'',objet:''})
 MERGE(TelOHU2:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-01',contenu:'',objet:''})
-----
+// ----
 
-.Creation de l'entité position
-----
+// .Creation de l'entité position
+// ----
 MERGE(positionZenikaNantes:Position{latitude:47.213763 ,longitude:-1.5562514000000647, lieu:'5 allée Brancas Nantes', site:'Zenika'})
 MERGE(positionMA:Position{latitude:37.3860517 ,longitude:-122.0838511, lieu:'Mountain View', site:'Google I/O'})
 MERGE(positionNantes:Position{latitude:447.218371 ,longitude:-1.553621000000021, lieu:'Nantes', site:'Château'})
-----
+// ----
 
 
-.Creation des *factures VUJ*
-----
+// .Creation des *factures VUJ*
+// ----
 MERGE(factureNdfTelVUJ:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:23.25,intitule:'Telephone'})
 MERGE(factureNdfBureauVUJ:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:70.00,intitule:'Fourniture Mac'})
 MERGE(factureNdfMacVUJ:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:70.00,intitule:'Fourniture Mac'})
-----
+// ----
 
-.Creation des *factures ABO*
-----
+// .Creation des *factures ABO*
+// ----
 MERGE(factureNdfABO:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:70.00,intitule:'Tel',dateDepense:'2018-01-03'})
 MERGE(factureDiversABO:Facture{libelle:'Choucroute',destinataire:'Compta Nantes',montant:40.00,intitule:'autres',dateDepense:'2018-01-05'})
 MERGE(factureRepasABO:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:45.00,intitule:'Repas Clientelle',dateDepense:'2018-01-06'})
 MERGE(factureRDVABO:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:150.00,intitule:'RDV Clientelle',dateDepense:'2018-03-03'})
-----
+// ----
 
-.Creation *Fature Amelin CE*
-----
+// .Creation *Fature Amelin CE*
+// ----
 MERGE(factureTelAOR:Facture{libelle:'NDF 201802',destinataire:'Compta Nantes',montant:05.00,intitule:'Tel',dateDepense:'2018-02-03'})
 MERGE(factureDiversAOR:Facture{libelle:'Divers',destinataire:'Compta Nantes',montant:250.00,intitule:'Autres',dateDepense:'2018-02-01'})
 MERGE(factureDivers1AOR:Facture{libelle:'Divers',destinataire:'',montant:1250.00,intitule:'Autres',dateDepense:'2018-02-03'})
 MERGE(factureDivers2AOR:Facture{libelle:'Divers',destinataire:'',montant:150.00,intitule:'Autres',dateAchat:'2018-01-08'})
-----
+// ----
 
-.Creation de l'entite *compta*
-----
+// .Creation de l'entite *compta*
+// ----
 MERGE(comptaNantes:Compta{libelle:'Compta Nantes',ville:'Nantes'})
 MERGE(comptaParis:Compta{libelle:'Compta Paris',ville:'Paris'})
-----
+// ----
 
 
-.Creation de l'entite *transactions*
-----
+// .Creation de l'entite *transactions*
+// ----
 MERGE(transaction5:Transaction{sens:'C',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'bonus',montant:10000.00,ip:'172.10.4.1'})
 MERGE(transaction6:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'course meetup',montant:400.00,ip:'172.18.3.1'})
 MERGE(transaction7:Transaction{sens:'D',date:'2017-01-11',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'arbre de noel',montant:500.00,ip:'172.12.24.1'})
@@ -163,11 +158,11 @@ MERGE(transaction17:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBA
 MERGE(transaction18:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
 MERGE(transaction19:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
 MERGE(transaction20:Transaction{sens:'D',date:'2017-03-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-----
+// ----
 
 
-.Creation de l'entité *photo*
-----
+// .Creation de l'entité *photo*
+// ----
 MERGE (photoJLA:PHOTO{libelle:'photo de vacance', date:'2017-03-12'})
-----
+// ----
 
