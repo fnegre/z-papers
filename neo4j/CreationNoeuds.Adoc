@@ -68,7 +68,7 @@ MERGE(agenceParis:Agence{libelle:'Zenika Paris'})
 MERGE(compteAgence:Compte{libelle:'Compte de Zenika Nantes',dateOuverture:'2012-01-01'})
 MERGE(compteAgenceCE:Compte{libelle:'Compte CE de Zenika Nantes',dateOuverture:'2012-01-01'})
 MERGE(compteAgenceParis:Compte{libelle:'Compte de Zenika Paris',dateOuverture:'2002-01-01'})
-MERGE(compteOffInconnu:Compte{libelle:'Inconnu',dateOuverture:'2017-05-27'})
+MERGE(compteInconnu:Compte{libelle:'Inconnu',dateOuverture:'2017-05-27'})
 // ----
 
 // .Creation de l entite *consultant*
