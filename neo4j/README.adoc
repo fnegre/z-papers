@@ -2,4 +2,5 @@
 
 Reste à faire :
 
-- [ ] Slide : Son Téléphone
+*  Slide : Son Téléphone
+*  Slide : remplacer les gifs Hack par des vidéos

@@ -73,17 +73,17 @@ MERGE(compteOffInconnu:Compte{libelle:'Inconnu',dateOuverture:'2017-05-27'})
 
 // .Creation de l entite *consultant*
 // ----
-MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika// .Com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
-MERGE(consultantFNE:Consultant{email:'florian.negre@zenika// .Com',tel:'',dateEmbauche:'2017-09-10'})
-MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantACE:Consultant{email:'antoine// .Celier@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantJLA:Consultant{email:'julien.landure@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika// .Com',tel:'',dateEmbauche:'2016-11-10'})
-MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika// .Com',tel:'',dateEmbauche:'2017-11-10'})
-MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika// .Com',tel:'',dateEmbauche:'2017-08-10'})
-MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika// .Com',tel:'',dateEmbauche:'2018-01-01'})
-MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika// .Com',tel:'',dateEmbauche:'2018-01-10'})
+MERGE(consultantVUJ:Consultant{email:'vickrame.ujoodha@zenika.com',tel:'06-18-06-21-55',dateEmbauche:'2016-11-10'})
+MERGE(consultantFNE:Consultant{email:'florian.negre@zenika.com,tel:'',dateEmbauche:'2017-09-10'})
+MERGE(consultantAOR:Consultant{email:'amelin.orange@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantACE:Consultant{email:'antoine// .Celier@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantJLA:Consultant{email:'julien.landure@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantOHU:Consultant{email:'olivier.hubert@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantABO:Consultant{email:'antoine.bonneau@zenika.com,tel:'',dateEmbauche:'2016-11-10'})
+MERGE(consultantFAB:Consultant{email:'frank.abgrall@zenika.com,tel:'',dateEmbauche:'2017-11-10'})
+MERGE(consultantBPE:Consultant{email:'benjamin.petetot@zenika.com,tel:'',dateEmbauche:'2017-08-10'})
+MERGE(consultantDMI:Consultant{email:'delphine.millet@zenika.com,tel:'',dateEmbauche:'2018-01-01'})
+MERGE(consultantLDU:Consultant{email:'lucas.dupuy@zenika.com,tel:'',dateEmbauche:'2018-01-10'})
 // ----
 
 
@@ -117,7 +117,8 @@ MERGE(TelOHU2:Echange{type:'TEL',destinataire:'0123456789',pj:'N',date:'2018-03-
 MERGE(positionZenikaNantes:Position{latitude:47.213763 ,longitude:-1.5562514000000647, lieu:'5 allée Brancas Nantes', site:'Zenika'})
 MERGE(positionMA:Position{latitude:37.3860517 ,longitude:-122.0838511, lieu:'Mountain View', site:'Google I/O'})
 MERGE(positionNantes:Position{latitude:47.218371 ,longitude:-1.553621000000021, lieu:'Nantes', site:'Château de Nantes'})
-MERGE(positionPanama:Position{latitude:8.537981 ,longitude:-80.782127, lieu:'Panama', site:'San Felipe'})
+MERGE(positionBanquePa:Position{latitude:8.537981 ,longitude:-80.782127, lieu:'banque Panama', site:'banque Panama'})
+MERGE(positionPhotoPa:Position{latitude:8.537581 ,longitude:-80.781127, lieu:'rue Panama', site:'rue Panama'})
 // ----
 
 
@@ -153,28 +154,33 @@ MERGE(comptaParis:Compta{libelle:'Compta Paris',ville:'Paris'})
 
 // .Creation de l'entite *transactions*
 // ----
-MERGE(transaction5:Transaction{sens:'C',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'bonus',montant:10000.00,ip:'172.10.4.1'})
-MERGE(transaction6:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'course meetup',montant:400.00,ip:'172.18.3.1'})
-MERGE(transaction7:Transaction{sens:'D',date:'2017-01-11',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'arbre de noel',montant:500.00,ip:'172.12.24.1'})
-MERGE(transaction8:Transaction{sens:'D',date:'2017-01-25',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'cheque cadeau',montant:3000.00,ip:'172.10.3.41'})
-MERGE(transaction9:Transaction{sens:'D',date:'2017-04-23',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'confort agence',montant:5000.00,ip:'172.10.5.1'})
-MERGE(transaction10:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN123456',libelle:'voyages Portugal',montant:5000.00,ip:'172.14.4.1'})
-MERGE(transaction11:Transaction{sens:'D',date:'2017-05-01',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'remboursement frais',montant:1000.00,ip:'172.19.54.1'})
-MERGE(transaction12:Transaction{sens:'D',date:'2017-04-10',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'autres',montant:10.00,ip:'172.153.4.1'})
-MERGE(transaction13:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'divers',montant:1000.00,ip:'177.10.4.1'})
-MERGE(transaction14:Transaction{sens:'D',date:'2017-06-20',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'autres',montant:260.00,ip:'177.10.4.1'})
-MERGE(transaction15:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'parking',montant:450.00,ip:'177.10.4.1'})
-MERGE(transaction16:Transaction{sens:'D',date:'2017-06-24',ibanDestinataire:'IBAN987654',ibanEmetteur:'IBAN345678',libelle:'autres',montant:600.00,ip:'177.10.4.1'})
-MERGE(transaction17:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction18:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction19:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
-MERGE(transaction20:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'IBAN234567',ibanEmetteur:'IBAN345678',libelle:'achats bureautiques',montant:100.00,ip:'177.10.4.1'})
+MERGE(transaction5:Transaction{sens:'C',date:'2017-03-01',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'bonus',montant:10000.00,ip:'172.10.4.1'})
+MERGE(transaction6:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'course meetup',montant:400.00,ip:'172.18.3.1'})
+MERGE(transaction7:Transaction{sens:'D',date:'2017-01-11',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'arbre de noel',montant:500.00,ip:'172.12.24.1'})
+MERGE(transaction8:Transaction{sens:'D',date:'2017-01-25',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'cheque cadeau',montant:3000.00,ip:'172.10.3.41'})
+MERGE(transaction9:Transaction{sens:'D',date:'2017-04-23',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'confort agence',montant:5000.00,ip:'172.10.5.1'})
+MERGE(transaction10:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753123456',libelle:'voyages Portugal',montant:5000.00,ip:'172.14.4.1'})
+MERGE(transaction11:Transaction{sens:'D',date:'2017-05-01',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753345678',libelle:'remboursement frais',montant:1000.00,ip:'172.19.54.1'})
+MERGE(transaction12:Transaction{sens:'D',date:'2017-04-10',ibanDestinataire:'FR145753234567',ibanEmetteur:'FR145753345678',libelle:'autres',montant:10.00,ip:'172.153.4.1'})
+MERGE(transaction13:Transaction{sens:'D',date:'2017-03-01',ibanDestinataire:'FR145753987654',ibanEmetteur:'FR145753345678',libelle:'divers',montant:1000.00,ip:'177.10.4.1'})
+MERGE(transaction14:Transaction{sens:'D',date:'2017-06-20',ibanDestinataire:'FR145753987654',ibanEmetteur:'FR145753345678',libelle:'autres',montant:260.00,ip:'177.10.4.1'})
+MERGE(transaction15:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'FR145753987654',ibanEmetteur:'FR145753345678',libelle:'parking',montant:450.00,ip:'177.10.4.1'})
+MERGE(transaction16:Transaction{sens:'D',date:'2017-06-24',ibanDestinataire:'FR145753987654',ibanEmetteur:'FR145753345678',libelle:'autres',montant:600.00,ip:'177.10.4.1'})
+MERGE(transaction17:Transaction{sens:'D',date:'2017-06-24',ibanDestinataire:'PA145753234567',ibanEmetteur:'FR145753345678',libelle:'achats bureautiques',montant:1000.00,ip:'177.10.4.1'})
+MERGE(transaction18:Transaction{sens:'D',date:'2017-06-25',ibanDestinataire:'PA145753234567',ibanEmetteur:'FR145753345678',libelle:'achats bureautiques',montant:700.00,ip:'177.10.4.1'})
+MERGE(transaction19:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'PA145753234567',ibanEmetteur:'FR145753345678',libelle:'achats bureautiques',montant:1250.00,ip:'177.10.4.1'})
+MERGE(transaction20:Transaction{sens:'D',date:'2017-06-26',ibanDestinataire:'PA145753234567',ibanEmetteur:'FR145753345678',libelle:'achats bureautiques',montant:2500.00,ip:'177.10.4.1'})
 // ----
 
 
 // .Creation de l'entité *photo*
 // ----
-MERGE (photoJLA:PHOTO{libelle:'photo de vacance', date:'2017-03-12'})
+MERGE (photoJLA1:PHOTO{libelle:'photo Julien 1', date:'2017-06-27'})
+MERGE (photoJLA2:PHOTO{libelle:'photo Julien 2', date:'2017-06-27'})
+MERGE (photoJLA3:PHOTO{libelle:'photo Julien 3', date:'2017-07-30'})
+MERGE (photoJLA4:PHOTO{libelle:'photo Julien 4', date:'2017-09-15'})
+MERGE (photoOHU1:PHOTO{libelle:'photo Olivier 1', date:'2017-05-12'})
+MERGE (photoOHU2:PHOTO{libelle:'photo Olivier 2', date:'2017-09-27'})
 // ----
 
 //.Creation

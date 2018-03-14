@@ -59,6 +59,7 @@ MERGE(agenceParis)-[:RESIDE]->(paysFR)
 MERGE(compteAgence)-[:RESIDE]->(paysFR)
 MERGE(compteAgenceCE)-[:RESIDE]->(paysFR)
 MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
+MERGE(compteInconnu)-[:RESIDE]->(paysPA)
 //MERGE(compteFNE)-[:RESIDE]->(paysFR)
 //MERGE(compteVUJ)-[:RESIDE]->(paysFR)
 //MERGE(compteABO)-[:RESIDE]->(paysFR)
@@ -67,7 +68,16 @@ MERGE(compteAgenceParis)-[:RESIDE]->(paysFR)
 //----
 
 // Creation de la relation 'compte/banque'
-MERGE(compteOffShore)-[:OUVERT_CHEZ]->(banquePA)
+MERGE(compteAgence)-[:OUVERT_CHEZ]->(banqueSG)
+MERGE(compteAgenceCE)-[:OUVERT_CHEZ]->(banqueBNP)
+MERGE(compteAgenceParis)-[:OUVERT_CHEZ]->(banqueSG)
+MERGE(compteInconnu)-[:OUVERT_CHEZ]->(banquePA)
+
+
+// Creation de la relation 'banque/position'
+MERGE (banqueSG)-[:EST_LOCALISE]->(positionBanqueSG)
+MERGE (banquePA)-[:EST_LOCALISE]->(positionBanquePA)
+
 
 //.Creation de la relation *compte/personne*
 //----
@@ -102,7 +112,9 @@ MERGE(consultantVUJ)-[:TRAVAILLE]->(agenceNantes)
 MERGE(consultantFNE)-[:TRAVAILLE]->(agenceNantes)
 MERGE(consultantAOR)-[:TRAVAILLE]->(agenceNantes)
 MERGE(consultantJLA)-[:TRAVAILLE]->(agenceNantes)
-MERGE(consultantOHU)-[:TRAVAILLE]->(agenceParis)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceParis)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceParis)
+MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-26"}]->(agenceParis)
 MERGE(consultantACE)-[:TRAVAILLE]->(agenceNantes)
 //----
 
@@ -128,6 +140,9 @@ MERGE(consultantABO)-[:PARTICIPE]->(pocker)
 MERGE (personneRestaurateur)-[:TRAVAILLE]->(agenceNantes)
 MERGE (personneImprimeur)-[:TRAVAILLE]->(agenceNantes)
 //----
+
+// Relation agence/position
+MERGE (agenceNantes)-[:EST_LOCALISE]->(positionZenikaNantes)
 
 //.Creation de la relation *consultant/compte*
 //----
@@ -243,10 +258,20 @@ MERGE (transaction20)-[:EST_LOCALISE]->(positionZenikaNantes)
 
 //.Creation de la relation *personne/photo*
 //----
-MERGE(personneJLA)-[:EST_PRISE]->(photoJLA)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA1)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA2)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA3)
+MERGE(personneJLA)-[:PREND_PHOTO]->(photoJLA4)
+MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU1)
+MERGE(personneOHU)-[:PREND_PHOTO]->(photoOHU2)
 //----
 
 //.Creation de la relation *photo/position*
 //----
-MERGE(photoJLA)-[:EST_LOCALISE]->(positionMA)
+MERGE(photoJLA1)-[:EST_LOCALISE]->(positionMA)
+MERGE(photoJLA2)-[:EST_LOCALISE]->(positionPhotoPa)
+MERGE(photoJLA3)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoJLA4)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoOHU1)-[:EST_LOCALISE]->(positionZenikaNantes)
+MERGE(photoOHU2)-[:EST_LOCALISE]->(positionZenikaNantes)
 //----
