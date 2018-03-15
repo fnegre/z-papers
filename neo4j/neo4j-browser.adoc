@@ -89,15 +89,15 @@ RETURN DISTINCT id(p), p.prenom, p.nom, c.dateEmbauche
 ```
 // 08 - Consultants à l'agence pendant les transactions frauduleuses
 MATCH (t:Transaction)-[*..4]-(BlackList{flagBlackList:true})
-WITH t
-MATCH path = (pers:Personne)--(:Consultant)-[work:TRAVAILLE{date:t.date}]->(a:Agence{libelle:'Zenika Nantes'})
+WITH collect(distinct t.date) as ts
+MATCH path = (pers:Personne)--(:Consultant)-[work:TRAVAILLE]->(a:Agence{libelle:'Zenika Nantes'})
+WHERE all(x in ts WHERE x in work.dates)
 return nodes(path)
 ```
 // --> Olivier
 
 ## Requête permettant de trouver les consultants à l'étranger à l'ouverture du compte
 
-// TODO tester requête
 [source,cypher]
 ```
 // 09 - Consultants à l'étranger lors de l'ouverture du compte
@@ -136,7 +136,7 @@ RETURN distance(p1,p2)/1000 AS dist
 .Créer une relation entre chaque lieu contenant leur distance
 [source,cypher]
 ----
-//12 - WIP Creation d'une relation "PROCHE" < 10km
+//12 - Creation d'une relation "PROCHE" < 10km
 Match(pos1:Position{site:"banque Panama"}), (pos2:Position)
 WHERE pos1.site <> pos2.site
 WITH point({ longitude: pos1.longitude, latitude: pos1.latitude }) AS p1, point({ longitude: pos2.longitude, latitude: pos2.latitude }) AS p2, pos1, pos2
@@ -149,10 +149,9 @@ MERGE (pos1)-[:PROCHE{valeur:distance}]-(pos2)
 
 ### Requête : trouver qui est lié à la banque
 
-// TODO Remplacer Zenika par la position Banque offshore
 [source,cypher]
 ----
-//13 WIP Qui est lié à la banque
+//13 Qui est lié à la banque
 Match path = (p:Personne)-[*..6]-(l:Position{site:"banque Panama"})
 return  nodes(path)
 ORDER BY LENGTH(path) limit 1

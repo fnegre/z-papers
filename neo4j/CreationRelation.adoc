@@ -117,13 +117,11 @@ MERGE(personneLDU)-[:EST]->(consultantLDU)
 //.Creation de la relation *consultant/agence*
 //----
 MERGE(consultantVUJ)-[:TRAVAILLE]->(agenceNantes)
-MERGE(consultantFNE)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceNantes)
-MERGE(consultantAOR)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceNantes)
+MERGE(consultantFNE)-[:TRAVAILLE{dates:["2017-06-24"]}]->(agenceNantes)
+MERGE(consultantAOR)-[:TRAVAILLE{dates:["2017-06-25"]}]->(agenceNantes)
 MERGE(consultantJLA)-[:TRAVAILLE]->(agenceNantes)
 MERGE(consultantOHU)-[:TRAVAILLE]->(agenceParis)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-24"}]->(agenceNantes)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-25"}]->(agenceNantes)
-MERGE(consultantOHU)-[:TRAVAILLE{date:"2017-06-26"}]->(agenceNantes)
+MERGE(consultantOHU)-[:TRAVAILLE{dates:["2017-03-10","2017-06-24","2017-06-25", "2017-06-26", "2017-09-06"]}]->(agenceNantes)
 MERGE(consultantACE)-[:TRAVAILLE]->(agenceNantes)
 //----
 
