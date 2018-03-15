@@ -10,31 +10,21 @@ Mots clefs : CREATE, RETURN
 
 [source,cypher]
 ----
-CREATE(t1:Transaction{date:'2017-01-01', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00})
+CREATE(t1:Transaction{montant:150.00})
 RETURN *
 ----
 //graph
 
-## Plusieurs transactions bancaires
+## Plusieurs transactions bancaires et  Personnes
 
 [source,cypher]
 ----
-MERGE(t1:Transaction{date:'2017-01-01', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00})
-MERGE(t2:Transaction{date:'2017-01-11', destinataire:'Jouet Club',libelle:'arbre de noel',montant:500.00})
-MERGE(t3:Transaction{date:'2017-05-01', destinataire:'Agence Nantes',libelle:'remboursement frais',montant:1000.00})
-RETURN *
-----
-
-//graph
-
-
-## Nouvelle entité : bénéficiaires
-
-[source,cypher]
-----
+MERGE(t1:Transaction{montant:150.00})
+MERGE(t2:Transaction{quand:'2017-01-11', montant:500.00, sujet:'remboursement frais'})
+MERGE(t3:Transaction{quand:'2017-05-01', montant:1000.00})
 MERGE(p1:Personne{nom:'Le Houblon Forever', position:'1 rue Gresset, 44000 Nantes'})
-MERGE(p2:Personne{nom:'Ujoodha', prenom:'Vickrame', dateNaissance:'1979-06-21', sexe:'M',compteGithub:'vickrame',compteTwitter:'RuvaChlea',profession:'developpeur', _libelle:'VUJ' })
-MERGE(p3:Personne{nom:'Nègre',prenom:'Florian',sexe:'M',compteGithub:'fnegre',compteTwitter:'floriannegre',profession:'developpeur'})
+MERGE(p2:Personne{nom:'Vickrame Ujoodha', sexe:'M', profession:'developpeur'})
+MERGE(p3:Personne{nom:'Florian Nègre', sexe:'M', twitter:'floriannegre', profession:'developpeur'})
 RETURN *
 ----
 
@@ -47,22 +37,13 @@ mot clef : `-[]->`
 
 [source,cypher]
 ----
-MERGE(transaction1:Transaction{sens:'D', emetteur:'CE', destinataire:'Le Houblon Forever', libelle:'Bieres', montant:150.00, date:'2017-01-01'})
+MERGE(transaction1:Transaction{montant:150.00, quand:'2017-01-01'})
 MERGE(personneLHF:Personne{nom:'Le Houblon Forever', position:'1 rue Gresset, 44000 Nantes'})
 MERGE (transaction1)-[:VERS]->(personneLHF)
 RETURN *
 ----
 
 //graph
-
-## Suppression des données
-
-//hide
-[source,cypher]
-----
-MATCH (n)
-DETACH DELETE n
-----
 
 ## Import en masse
 
@@ -74,22 +55,13 @@ Import du fichier csv : https://raw.githubusercontent.com/fnegre/z-papers/master
 ----
 LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/fnegre/z-papers/master/neo4j/csv/persons.csv" AS csvLine
 MERGE (p:Personne {nom: csvLine.personne})
-MERGE (t:Transaction {libelle: csvLine.transactionLibelle, montant: toInt(csvLine.transactionMontant), date: csvLine.transactionDate})
+MERGE (t:Transaction {sujet: csvLine.transactionLibelle, montant: toInt(csvLine.transactionMontant), quand: csvLine.transactionDate})
 MERGE (t)-[:VERS]->(p)
 RETURN p, t
 ----
 //graph_result
 
 ## Recherche de transactions
-
-.Recherche de relations
-[source,cypher]
-----
-MATCH (t:Transaction)-[:VERS]->(b)
-RETURN t, b
-----
-//graph_result
-
 
 .Recherche de relations avec un critère
 [source,cypher]
@@ -100,7 +72,6 @@ RETURN t, b
 ----
 //graph_result
 
-
 .Recherche de relations avec 2 critères (en utilisant 2 syntaxes différentes)
 [source,cypher]
 ----
@@ -109,14 +80,3 @@ where t.montant > 50
 RETURN t, b
 ----
 //graph_result
-
-.Recherche avec résultat sous forme de count
-
-[source,cypher]
-----
-MATCH (t:Transaction)-[:VERS]->(b)
-where t.montant > 50
-and b.nom = 'Jouet Club'
-RETURN count(t)
-----
-//table
