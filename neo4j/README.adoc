@@ -17,9 +17,10 @@ Reste à faire :
 ## Remarques
 
 lien csv
-affichage requete montant - afficher le montant plutot que la date
+gist affichage requete montant - afficher le montant plutot que la date
 préciser transaction bancaire
-req 3 - enlever la localisation pour avoir un schema plus clair
+
+browser req 3 - enlever la localisation pour avoir un schema plus clair
 
 En conclusion :
 Dire les gros utilisateurs de Neo4J
