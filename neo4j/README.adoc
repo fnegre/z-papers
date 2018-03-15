@@ -2,12 +2,14 @@
 
 Reste à faire :
 
-*  Slide : Son Téléphone
-*  Slide : remplacer les gifs Hack par des vidéos
+* Amener téléphone
+* Amener balles en mousse
+* Tester télécommande
 
 
 ## Questions:
 
 * qu'elle est la différence entre la requête 3 et 4
+** --> la requête 3 renvoie toutes les transactions + ses relations, alors que la 4 renvoie juste celles vers des pays étrangers
 * la requete 8 me donne 3 personnes (je pense qu'il faut changer les dates ou prb de merge)
-*
+** --> Effectivement il y'a un souci, je corrige
