@@ -4,3 +4,10 @@ Reste à faire :
 
 *  Slide : Son Téléphone
 *  Slide : remplacer les gifs Hack par des vidéos
+
+
+## Questions:
+
+* qu'elle est la différence entre la requête 3 et 4
+* la requete 8 me donne 3 personnes (je pense qu'il faut changer les dates ou prb de merge)
+*
