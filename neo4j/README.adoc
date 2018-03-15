@@ -13,3 +13,14 @@ Reste à faire :
 ** --> la requête 3 renvoie toutes les transactions + ses relations, alors que la 4 renvoie juste celles vers des pays étrangers
 * la requete 8 me donne 3 personnes (je pense qu'il faut changer les dates ou prb de merge)
 ** --> Effectivement il y'a un souci, je corrige
+
+## Remarques
+
+lien csv
+affichage requete montant - afficher le montant plutot que la date
+préciser transaction bancaire
+req 3 - enlever la localisation pour avoir un schema plus clair
+
+En conclusion :
+Dire les gros utilisateurs de Neo4J
+Dire quels cas d'utilisation pour Neo4J

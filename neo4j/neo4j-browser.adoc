@@ -33,7 +33,7 @@ match(n) return n
 [source,cypher]
 ----
 // 03 - Transactions + relation directe
-match (n:Transaction)--(o) return n, o
+match (n:Transaction)--(o:Compte) return n, o
 ----
 
 ## Transactions vers des comptes étrangers (à partir de l'iban)
